@@ -1,5 +1,5 @@
 (TeX-add-style-hook
- "labTemplate"
+ "report_main"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
                      '(("fontenc" "T1") ("inputenc" "utf8")))
@@ -16,10 +16,6 @@
    (TeX-run-style-hooks
     "latex2e"
     "part1"
-    "part2"
-    "part3"
-    "summary"
-    "reference"
     "article"
     "art10"
     "fontenc"
