@@ -178,3 +178,20 @@ TSWLatexianTemp*
 
 # KBibTeX
 *~[0-9]*
+
+## My additions
+*.tps
+*.synctex
+*.stackdump
+
+# windows
+[Tt]humbs.db
+*.DS_Store
+*.lnk
+
+# TeXnicCenter
+*.tcp
+
+# temp
+*.tmp
+*.temp
