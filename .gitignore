@@ -10,6 +10,7 @@
 *.fot
 *.cb
 *.cb2
+auto/
 
 ## Intermediate documents:
 *.dvi
@@ -179,11 +180,6 @@ TSWLatexianTemp*
 # KBibTeX
 *~[0-9]*
 
-## My additions
-*.tps
-*.synctex
-*.stackdump
-
 # windows
 [Tt]humbs.db
 *.DS_Store
@@ -191,6 +187,9 @@ TSWLatexianTemp*
 
 # TeXnicCenter
 *.tcp
+*.tps
+*.synctex
+*.stackdump
 
 # temp
 *.tmp
