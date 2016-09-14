@@ -3,6 +3,46 @@
 %%% TeX-master: "report_main"
 %%% End:
 
-\section{Part 2}
+\section{Part 2 -- Monovariable control}
 \subsection{Problem 1}
+We are given the controller shown in \cref{eq:pd_controller}.
+\begin{equation}
+  \label{eq:pd_controller}
+  \tilde{V_d} = K_{pp}(\tilde{p_c} - \tilde{p}) - K_{pd} \dot{\tilde{p}}
+\end {equation}
+We take this controller and substitute it in the equation for pitch
+angle (\cref{eq:pitch}).
+\begin{equation}
+  \label{eq:pitch_with_pd}
+  \ddot{\tilde{p}} = K_1 K_{pp}(\tilde{p_c} - \tilde{p}) - K_1 K_{pd}
+  \dot{\tilde{p}}
+\end{equation}
+Now we Laplace transform \cref{eq:pitch_with_pd} to find the transfer
+function $\frac{\tilde{p}(s)}{\tilde{p_c}(s)}$.
+\begin{align*}
+  \ddot{\tilde{p}} + K_1 K_{pd}\dot{\tilde{p}}
+  + K_1K_{pp}\tilde{p} &= K_1 K_{pp}\tilde{p_c} \\
+  \mathcal{L}\rightarrow&  \\
+  s^2\tilde{p}(s) + sK_1K_{pd}\tilde{p}(s)
+  + K_1K_{pp}\tilde{p}(s) &= K_1K_{pp}\tilde{p_c}(s)
+\end{align*}
+Which gives us our transfer function
+\begin{equation}
+  \label{eq:trans_func}
+  \frac{\tilde{p}(s)}{\tilde{p_c}(s)} = \frac{K_1K_{pp}}{s^2+K_1K_{pd}s+K_1K_{pp}}
+\end{equation}
+
+The linearized pitch dynamics can be regarded as a second-order linear
+system, which means that if we place \cref{eq:trans_func} on the form
+shown in \cref{eq:sol_system} we can determine $K_{pp}$ and $K_{pd}$
+from $\omega$ and $\zeta$.
+\begin{equation}
+  \label{eq:sol_system}
+  h(s) = \frac{\omega^2}{s^2+2\zeta\omega^2s+\omega^2}
+\end{equation}
+
+\todo[inline]{Discuss how the tuning of the controller gains Kpp and Kpd
+  influences the closed-loop eigenvalues and the pitch response.}
+
+
 \subsection{Problem 2}
