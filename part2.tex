@@ -41,8 +41,43 @@ from $\omega$ and $\zeta$.
   h(s) = \frac{\omega^2}{s^2+2\zeta\omega^2s+\omega^2}
 \end{equation}
 
-\todo[inline]{Discuss how the tuning of the controller gains Kpp and Kpd
-  influences the closed-loop eigenvalues and the pitch response.}
+This gives us the following relations
+\begin{align}
+  \label{eq:omega}
+  \omega &= \sqrt{K_ 1K_ {pp}} \\
+  2\zeta\omega^2 &= K_ 1K_ {pd} \nonumber \\
+  \label{eq:zeta}
+  \zeta = \frac{K_ 1K_ {pd}}{2\omega^2} &= \frac{K_{pd}}{2K_{pp}}
+\end{align}
+
+We know that for a critically damped system $\zeta = 1$, which gives
+us
+
+\begin{equation}
+  \label{eq:K_pd}
+  K_{pd} = 2K_{pp}
+\end{equation}
+
+We chose a $K_{pp} = 3$ and then from the relation in \cref{eq:K_pd}
+we get $K_{pd} = 6$. With these values the response of the pitch angle
+to the input was slower than desired. Therefore, $K_{pp}$ was
+increased to $K_{pp} = 12.5$ and $K_{pd}$ was lowered to underdamp the
+system, until it  was sufficiently responsive at $K_{pd} = 0.7K_{pp} =
+8.75$. At these values the system responded faster with only minor
+oscillations. It was observed that larger values of $K_{pp}$ gave rise
+to larger oscillations.
+
+\todo[inline]{Figure for that shows poles on Im/Re axis?}
+
+At the critically damped point, the poles lie on the same point on
+the x-axis. When $K_{pd}$ is increased in relation to $K_{pp}$ the system is
+over-damped the poles move away from each other along the x-axis.
+When $K_{pd}$ decreased in relation to $K_{pp}$, the system is under damped
+and the poles move away from each other vertically from the critically
+damped point.
+
+With the PD controller, it was significantly easier to control the
+helicopter than with just feed forward joystick control.
 
 
 \subsection{Problem 2}
