@@ -3,6 +3,11 @@
 %%% TeX-master: "report_main"
 %%% End:
 
+\def\SPSB#1#2{\rlap{\textsuperscript{{#1}}}\SB{#2}}
+\def\SP#1{\textsuperscript{{#1}}}
+\def\SB#1{\textsubscript{{#1}}}
+
+
 \section{Part 1 - Mathematical modeling}
 \subsection{Problem 1}
 
@@ -32,5 +37,102 @@ Here, we can see that $L_1 = l_pK_f$.
 \end{figure}
 
 \subsection{Problem 2}
+	To linearize the system about the point with all state variables equal to zero ($p, e, \lambda$)\SP{T} = (\textit{$\dot{p}$, $\dot{e}$,$\dot{\lambda}$})\SP{T} = (0, 0, 0))  the inputs in the equations of motion (V\SPSB{*}{s} and V\SPSB{*}{d}) must be set to values that make this an equilibrium point.
+	At the linearization point, the equation of motion for pitch (\todo{ADD EQUATION REFERENCE}) reduces to $0 = L\SB{1} * V\SPSB{*}{d}$ therefore:
+	\begin{equation}
+		V\SPSB{*}{d} = 0
+	\end{equation}
+	At the linearization point, the equation of motion for elevation (\todo{ADD EQUATION REFERENCE}) reduces to $0 = L\SB{2} + L\SB{3}*V\SPSB{*}{s}$ therefore:
+	\begin{equation}
+	V\SPSB{*}{s} = -L\SB{2} / L\SB{3}
+	\end{equation}
+While the equation of motion for travel (\todo{ADD EQUATION REFERENCE}) at the linearization point simply reduces to 0 = 0.
+	\\The following transformation is performed to simplify the analysis \todo{Add cite of assignment here}:
+	\begin{equation}
+		\begin{bmatrix}
+			\tilde{p} \\
+			\tilde{e} \\
+			\tilde{\lambda}
+		\end{bmatrix} 
+		=
+		\begin{bmatrix}
+			p \\
+			e \\
+			\lambda
+		\end{bmatrix} 
+		- 
+		\begin{bmatrix}
+			p\SP{*} \\
+			e\SP{*} \\
+			\lambda\SP{*}
+		\end{bmatrix}
+		and
+		\begin{bmatrix}
+			\tilde{V}\SB{s} \\
+			\tilde{V}\SB{d}
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			V\SB{s} \\
+			V\SB{d}
+		\end{bmatrix} 
+		- 
+		\begin{bmatrix}
+			V\SPSB{*}{s} \\
+			V\SPSB{*}{d} 
+		\end{bmatrix}
+	\end{equation}
+	The equations of motion in the transformed system are therefore:
+	\begin{subequations}
+	\begin{align}
+		J_p\ddot{\tilde{p}} &= L_1\tilde{V_d} \\
+		J_e\ddot{\tilde{e}} &= L_2cos(\tilde{e}) + L_3(\tilde{V_s}+L_2/L_3)cos(\tilde{p}) \\
+		J_{\lambda}\ddot{\tilde{\lambda}} &= L_4(\tilde{V_s}+L_2/L_3)cos(\tilde{e})sin(\tilde{p})
+	\end{align}
+	\end{subequations}
+	By choosing the state to be x = ($\tilde{p}$, $\tilde{e}$, $\tilde{\lambda}$, \textit{$\dot{p}$, $\dot{e}$,$\dot{\lambda}$}) the nonlinear state equations become:
+	\begin{subequations}
+	\begin{align}
+		\dot{x}_1 &= x_4 \\
+		\dot{x}_2 &= x_5 \\
+		\dot{x}_3 &= x_6 \\
+		\dot{x}_4 &= (L_1/J_p) V_d \\
+		\dot{x}_5 &= (L_2/J_e)cos(x_2) + (L_3/J_e)(V_s + L_2 / L_3)cos(x_1) \\
+		\dot{x}_6 &= (L_4 / J_\lambda) (V_s + L_2 / L_3)cos(x_2)sin(x_1)
+	\end{align}
+	\end{subequations}
+	If the above system is expressed as $\dot{x} = h(x, u)$, where x is the state and u is the input, the system is linearized by finding the Jacobians of h with respect to the state and the input and then plugging in the equilibrium values.
+	\begin{equation}
+		\frac{\partial h}{\partial x} = A =
+		\begin{bmatrix}
+			0 & 0 & 0 & 1 & 0 & 0 \\
+			0 & 0 & 0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & 0 & 0 & 1 \\
+			0 & 0 & 0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 0 & 0 & 0 \\
+			\frac{L_4L_2}{J_\lambda L_3} & 0 & 0 & 0 & 0 & 0 
+		\end{bmatrix}
+		\qquad
+		\frac{\partial h}{\partial u} = B = 
+		\begin{bmatrix}
+			0 & 0 \\
+			0 & 0 \\
+			0 & 0 \\
+			0 & L_1/J_p \\
+			L_3/J_e & 0 \\
+			0 & 0  
+		\end{bmatrix}
+	\end{equation}
+where $L_1, L_2, L_3$ and $L_4$ were calculated in Section 1.1 \todo{maybe cite this} and $J_p, J_e$ and $J_\lambda$ were given in the assignment description \todo{add cite to assignment}.
+The linearized equations of motion can therefore be written in the following form:
+\begin{subequations}
+\begin{align}
+\ddot{\tilde{p}} &= K_1\tilde{V}_d \qquad K_1 = \frac{L_1}{J_p}\\
+\ddot{\tilde{e}} &= K_2\tilde{V}_s \qquad K_2 = \frac{L_3}{J_e}\\
+\ddot{\tilde{\lambda}} &= K_3\tilde{p} \qquad K_2 = \frac{L_4L_2}{J_\lambda L_3} 
+\end{align}
+\end{subequations}
 \subsection{Problem 3}
 \subsection{Problem 4}
+
+	
