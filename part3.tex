@@ -1,46 +1,60 @@
-
-
 \section{Part 3 - Multivariable control}
 \subsection{Problem 1}
 The matrices A and B are:
 \begin{equation}
-\boldsymbol{A} = \begin{bmatrix}
-0 & 1 & 0 \\
-0 & 0 & 0 \\
-0 & 0 & 0 \\
-\end{bmatrix}, \hspace{0.5cm}
-\boldsymbol{B} = \begin{bmatrix}
-0 & 0 \\
-0 & K_1 \\
-K_2 & 0 \\
-\end{bmatrix}
+  \boldsymbol{A} = \begin{bmatrix}
+    0 & 1 & 0 \\
+    0 & 0 & 0 \\
+    0 & 0 & 0 \\
+  \end{bmatrix}, \hspace{0.5cm}
+  \boldsymbol{B} = \begin{bmatrix}
+    0 & 0 \\
+    0 & K_1 \\
+    K_2 & 0 \\
+  \end{bmatrix}
 \end{equation}
 
 \subsection{Problem 2}
-The systems controllability is examined through its controllability matrix $\boldsymbol{\mathcal{C}}$:
+The systems controllability is examined through its controllability
+matrix $\boldsymbol{\mathcal{C}}$:
+
 \begin{equation}
-\boldsymbol{\mathcal{C}} = \begin{bmatrix}
-\boldsymbol{B} & \boldsymbol{AB}
-\end{bmatrix}
-=
-\begin{bmatrix}
-0 & 0 & 0 & K_1 \\
-0 & K_1 & 0 & 0 \\
-K_2 & 0 & 0 & 0 \\
-\end{bmatrix}
+  \boldsymbol{\mathcal{C}} = \begin{bmatrix}
+    \boldsymbol{B} & \boldsymbol{AB}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0 & 0 & 0 & K_1 \\
+    0 & K_1 & 0 & 0 \\
+    K_2 & 0 & 0 & 0 \\
+  \end{bmatrix}
 \end{equation}
-which has full rank: $rank(\boldsymbol{\mathcal{C}}) = 3$, and is thus controllable.
-\\
-\\
-Here, we are using LQR with reference feed-forward in order to control our system. Our $\boldsymbol{P}$ is defined such that as time goes to infinity, our states tend to the reference values. This happens when $\dot{\boldsymbol{x}} = 0$, as the system reaches a stable equilibrium around the reference values:
+which has full rank: $rank(\boldsymbol{\mathcal{C}}) = 3$, and is thus
+controllable.
+
+Here, we are using LQR with reference feed-forward in order to control
+our system. Our $\boldsymbol{P}$ is defined such that as time goes to
+infinity, our states tend to the reference values. This happens when
+$\dot{\boldsymbol{x}} = 0$, as the system reaches a stable equilibrium
+around the reference values:
+
 \begin{align*}
-\dot{\boldsymbol{x}} &= \boldsymbol{Ax} - \boldsymbol{Bu} \\
-										 &= \boldsymbol{Ax} - \boldsymbol{B}(\boldsymbol{Pr} - \boldsymbol{Kx}) = 0
+  \dot{\boldsymbol{x}} &= \boldsymbol{Ax} - \boldsymbol{Bu} \\
+                       &= \boldsymbol{Ax} -
+                         \boldsymbol{B}(\boldsymbol{Pr} -
+                         \boldsymbol{Kx}) = 0
 \end{align*}
 Which implies:
 \begin{align*}
-\dot{\boldsymbol{x}} &= \boldsymbol{Ax} - \boldsymbol{Bu} \\
-										 &= \boldsymbol{Ax} - \boldsymbol{B}(\boldsymbol{Pr} - \boldsymbol{Kx}) = 0
+  \dot{\boldsymbol{x}} &= \boldsymbol{Ax} - \boldsymbol{Bu} \\
+                       &= \boldsymbol{Ax} -
+                         \boldsymbol{B}(\boldsymbol{Pr} -
+                         \boldsymbol{Kx}) = 0
 \end{align*}
 \subsection{Problem 3}
 \subsection{Problem 4}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "report_main"
+%%% End:
