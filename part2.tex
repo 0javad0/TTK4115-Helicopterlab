@@ -81,3 +81,18 @@ helicopter than with just feed forward joystick control.
 
 
 \subsection{Problem 2}
+By plugging the P controller for travel: 
+\begin{equation}
+	\tilde{p} = K_{rp}(\dot{\tilde{\lambda}}_c - \dot{\tilde{\lambda}})
+\end{equation}
+into the equation of motion for travel \todo{Add equation reference}, the transfer function between $\dot{\tilde{\lambda}}$ and $\dot{\tilde{\lambda}}_c$  can be derived. By substituting the right side of the controller into the equation of motion for travel the equation becomes:
+\begin{equation}
+	\ddot{\tilde{\lambda}} = K_3(K_{rp}(\dot{\tilde{\lambda}}_c - \dot{\tilde{\lambda}}))
+\end{equation}
+After taking the laplace transform and rearranging terms, the transfer function is as follows:
+\begin{equation}
+	\frac{\ddot{\tilde{\lambda}}(s)}{\dot{\tilde{\lambda}}_c(s)} = \frac{K_3K_{rp}}{s + K_3K_{rp}}
+\end{equation}
+This controller was quite quick and stable after correctly tuning $K_{rp}$. The value that was deemed best was $K_{rp}$ = \todo{fill in this value}. Higher values of $K_{rp}$ led to \todo{Describe performance}, while lower values of $K_{rp}$ led to \todo{describe performance}.  It was not nessecary to add a gain to the x value of the joystick to produce quick and accurate control.
+
+
