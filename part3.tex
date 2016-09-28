@@ -30,9 +30,7 @@ First, we are to examine the controllability of the system. We do that by findin
 which has full rank: $rank(\boldsymbol{\mathcal{C}}) = 3$, and is thus
 controllable.
 
-Here, we are using LQR with reference feed-forward in order to control
-our system. Our $\boldsymbol{P}$ is defined such that as time goes to
-infinity, our states tend to the reference values. This happens when
+Second, we are to implement a LQR controller with reference feed-forward. Our $\boldsymbol{P}$ is defined such that as time goes to infinity, our states $\tilde{p}$ and $\tilde{\dot{e}}$ tend to their reference values $\tilde{p}_c$ and $\tilde{\dot{e}}_c$. This happens when
 $\dot{\boldsymbol{x}} = 0$, as the system reaches a stable equilibrium
 around the reference values:
 
@@ -44,17 +42,31 @@ around the reference values:
 											 &= (\boldsymbol{A}-\boldsymbol{BK})\boldsymbol{x}
 												+ \boldsymbol{BPr} = 0
 \end{align*}
-When $\boldsymbol{\dot{x}} = 0$, our \boldsymbol{x} has reached its final value and we define $\boldsymbol{x} = \boldsymbol{x_\infty}$:
+When $\boldsymbol{\dot{x}} = 0$ we define $\boldsymbol{x}$ as $\boldsymbol{x_\infty}$ because it has reached its final values:
 \begin{align*}
 (\boldsymbol{BK} - \boldsymbol{A})\boldsymbol{x_\infty} = \boldsymbol{BPr} \\
 \Leftrightarrow \boldsymbol{x_\infty} = (\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr} \\
 \Rightarrow \boldsymbol{y_\infty} = \boldsymbol{Cx_\infty} = \boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr}
-\end{equation}
+\end{align*}
 We see that our output \boldsymbol{y_\infty} is equal to our reference \boldsymbol{r} when:
 \begin{equation}
 \boldsymbol{P} = [\boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{B}]^{-1}
+\end{equation}
+Therefore, we now have
+\begin{align*}
+\lim_{t\to\infty}\boldsymbol{y}(t) = \boldsymbol{y_\infty} =
+\begin{bmatrix}
+\tilde{p} \\
+\tilde{\dot{e}}
+\end{bmatrix}
+= 
+\begin{bmatrix}
+\tilde{p}_c \\
+\tilde{\dot{e}}_c
+\end{bmatrix}
+= \boldsymbol{r},
 \end{align*}
-which is the \boldsymbol{P} that makes  we have used in our matlab code.
+which is what we wanted.
 \subsection{Problem 3}
 \subsection{Problem 4}
 %%% Local Variables:
