@@ -209,6 +209,7 @@ The linearized equations of motion can therefore be written in the
 following form:
 
 \begin{subequations}
+\label{eq:linearized EoM}
   \begin{align}
     \ddot{\tilde{p}} &= K_1\tilde{V}_d \qquad K_1 = \frac{L_1}{J_p} \label{eq:linearized pitch EoM}\\
     \ddot{\tilde{e}} &= K_2\tilde{V}_s \qquad K_2 = \frac{L_3}{J_e} \label{eq:linearized elevation EoM}\\
@@ -216,7 +217,11 @@ following form:
   \end{align}
 \end{subequations}
 \subsection{Problem 3}
+The helicopter is difficult to control using only feed-forward. The physical behaviour of the helicopter differs from the (2a) - (2c) \cite[p.13]{assignment} model because it does not take into consideration air resistance drag, ground effects nor the changes in length of the moment arm around the elevation axis. The equation \eqref{eq:linearized EoM} model is linearized around a point with all angles equal to zero, where elevation is defined as zero when the elevation arm is parallel to the table, pitch is defined as zero when the pitch arm is parallel to the table and travel angle is defined as zero at the initial travel angle. Since the physical system is not linear, the linear assumption breaks down when the system is too far from this point.
 \subsection{Problem 4}
+Elevation is the only variable that needs to be changed, since travel and pitch are zeroed correctly upon initialization. To correct for the offset of the arm at startup, subtract 30 degrees from the elevation to get the correct point of zero elevation.
+
+The motor force constant, $K_f$, which relates $F_f$ and $V_f$ is calculated to be $-(L_2/l_h)*V^*_s$, and has the value 0.1332.
 
 %%% Local Variables:
 %%% mode: latex
