@@ -3,11 +3,6 @@
 %%% TeX-master: "report_main"
 %%% End:
 
-\def\SPSB#1#2{\rlap{\textsuperscript{{#1}}}\SB{#2}}
-\def\SP#1{\textsuperscript{{#1}}}
-\def\SB#1{\textsubscript{{#1}}}
-
-
 \section{Part 1 - Mathematical modeling}
 \subsection{Problem 1}
 
@@ -25,7 +20,6 @@ starting point for deriving the equations of motion.
 The equation of motion for the pitch is found through the momentum
 around the pitch axis in the clockwise direction as shown in
 \cref{fig:helicopter_model}. It becomes:
-
 
 \begin{align*}
   J_p\ddot{p} &= l_p(F_{g,b} - F_b - F_{g,f} + F_f) \\
@@ -96,24 +90,23 @@ The equations (1), (2), and (3) corresponds to (2a), (2b), and (2c) respectively
 
 \subsection{Problem 2}
 To linearize the system about the point with all state variables equal
-to zero ($p, e, \lambda$)\SP{T} = (\textit{$\dot{p}$,
-  $\dot{e}$,$\dot{\lambda}$})\SP{T} = (0, 0, 0))  the inputs in the
-equations of motion (V\SPSB{*}{s} and V\SPSB{*}{d}) must be set to
+to zero $(p, e, \lambda)^T = \dot{p},(\dot{e},\dot{\lambda}=^T $ = (0, 0, 0))
+the inputs in the equations of motion ($V^{*}_{s} \text{and} V^{*}_{d}$) must be set to
 values that make this an equilibrium point.
 
 At the linearization point, the equation of motion for pitch
-(\todo{ADD EQUATION REFERENCE}) reduces to $0 = L\SB{1} *
-V\SPSB{*}{d}$ therefore:
-
+(\todo{ADD EQUATION REFERENCE}) reduces to $0 = L_{1} *
+V^{*}_{d}$ therefore
+:
 \begin{equation}
-  V\SPSB{*}{d} = 0
+  V^{*}_{d} = 0
 \end{equation}
 At the linearization point, the equation of motion for elevation
-(\todo{ADD EQUATION REFERENCE}) reduces to $0 = L\SB{2} +
-L\SB{3}*V\SPSB{*}{s}$ therefore:
+(\todo{ADD EQUATION REFERENCE}) reduces to $0 = L_{2} +
+L_{3}*V^{*}_{s}$ therefore:
 
 \begin{equation}
-  V\SPSB{*}{s} = -L\SB{2} / L\SB{3}
+  V^{*}_{s} = -L_{2} / L_{3}
 \end{equation}
 While the equation of motion for travel (\todo{ADD EQUATION
   REFERENCE}) at the linearization point simply reduces to 0 = 0.\\
@@ -134,24 +127,24 @@ The following transformation is performed to simplify the analysis
   \end{bmatrix}
   -
   \begin{bmatrix}
-    p\SP{*} \\
-    e\SP{*} \\
-    \lambda\SP{*}
+    p^{*} \\
+    e^{*} \\
+    \lambda^{*}
   \end{bmatrix}
   and
   \begin{bmatrix}
-    \tilde{V}\SB{s} \\
-    \tilde{V}\SB{d}
+    \tilde{V}_{s} \\
+    \tilde{V}_{d}
   \end{bmatrix}
   =
   \begin{bmatrix}
-    V\SB{s} \\
-    V\SB{d}
+    V_{s} \\
+    V_{d}
   \end{bmatrix}
   -
   \begin{bmatrix}
-    V\SPSB{*}{s} \\
-    V\SPSB{*}{d}
+    V^{*}_{s} \\
+    V^{*}_{d}
   \end{bmatrix}
 \end{equation}
 The equations of motion in the transformed system are therefore:
