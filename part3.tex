@@ -1,6 +1,6 @@
 \section{Part 3 - Multivariable control}
 \subsection{Problem 1}
-The matrices A and B are:
+Here, we are to find the systems matrices \boldsymbol{A} and \boldsymbol{B}. Trivially, they are:
 \begin{equation}
   \boldsymbol{A} = \begin{bmatrix}
     0 & 1 & 0 \\
@@ -15,9 +15,7 @@ The matrices A and B are:
 \end{equation}
 
 \subsection{Problem 2}
-The systems controllability is examined through its controllability
-matrix $\boldsymbol{\mathcal{C}}$:
-
+First, we are to examine the controllability of the system. We do that by finding the controllability matrix $\boldsymbol{\mathcal{C}}$ of the system, and see whether it has full rank or not:
 \begin{equation}
   \boldsymbol{\mathcal{C}} = \begin{bmatrix}
     \boldsymbol{B} & \boldsymbol{AB}
@@ -39,21 +37,26 @@ $\dot{\boldsymbol{x}} = 0$, as the system reaches a stable equilibrium
 around the reference values:
 
 \begin{align*}
-  \dot{\boldsymbol{x}} &= \boldsymbol{Ax} - \boldsymbol{Bu} \\
-                       &= \boldsymbol{Ax} -
+  \dot{\boldsymbol{x}} &= \boldsymbol{Ax} + \boldsymbol{Bu} \\
+                       &= \boldsymbol{Ax} +
                          \boldsymbol{B}(\boldsymbol{Pr} -
-                         \boldsymbol{Kx}) = 0
+                         \boldsymbol{Kx}) \\
+											 &= (\boldsymbol{A}-\boldsymbol{BK})\boldsymbol{x}
+												+ \boldsymbol{BPr} = 0
 \end{align*}
-Which implies:
+When $\boldsymbol{\dot{x}} = 0$, our \boldsymbol{x} has reached its final value and we define $\boldsymbol{x} = \boldsymbol{x_\infty}$:
 \begin{align*}
-  \dot{\boldsymbol{x}} &= \boldsymbol{Ax} - \boldsymbol{Bu} \\
-                       &= \boldsymbol{Ax} -
-                         \boldsymbol{B}(\boldsymbol{Pr} -
-                         \boldsymbol{Kx}) = 0
+(\boldsymbol{BK} - \boldsymbol{A})\boldsymbol{x_\infty} = \boldsymbol{BPr} \\
+\Leftrightarrow \boldsymbol{x_\infty} = (\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr} \\
+\Rightarrow \boldsymbol{y_\infty} = \boldsymbol{Cx_\infty} = \boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr}
+\end{equation}
+We see that our output \boldsymbol{y_\infty} is equal to our reference \boldsymbol{r} when:
+\begin{equation}
+\boldsymbol{P} = [\boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{B}]^{-1}
 \end{align*}
+which is the \boldsymbol{P} that makes  we have used in our matlab code.
 \subsection{Problem 3}
 \subsection{Problem 4}
-
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "report_main"
