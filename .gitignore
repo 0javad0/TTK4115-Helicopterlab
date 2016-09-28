@@ -194,3 +194,6 @@ TSWLatexianTemp*
 # temp
 *.tmp
 *.temp
+
+#Emacs backup
+*.*~
