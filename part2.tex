@@ -69,8 +69,8 @@ to larger oscillations.
 
 \begin{figure}[H]
   \caption{Change in pole position by increasing $K_{pp}$ given a constant $K_{pd}$}
-  \label{fig:root_locus}
-  \includegraphics[width=\textwidth]{images/root_locus}
+  \label{fig:Root_Locus}
+  \includegraphics[width=\textwidth]{images/Root_Locus}
 \end{figure}
 
 At the critically damped point, the poles lie on the same point on
@@ -85,21 +85,31 @@ helicopter than with just feed forward joystick control.
 
 
 \subsection{Problem 2}
-By plugging the P controller for travel: 
+By plugging the P controller for travel:
 \begin{equation}
 \label{travel P controller}
-	\tilde{p} = K_{rp}(\dot{\tilde{\lambda}}_c - \dot{\tilde{\lambda}})
+\tilde{p} = K_{rp}(\dot{\tilde{\lambda}}_c - \dot{\tilde{\lambda}})
 \end{equation}
-into the equation of motion for travel \cref{eq:linearized travel EoM}, the transfer function between $\dot{\tilde{\lambda}}$ and $\dot{\tilde{\lambda}}_c$  can be derived. By substituting the right side of the controller into the equation of motion for travel the equation becomes:
+into the equation of motion for travel \cref{eq:linearized travel
+  EoM}, the transfer function between $\dot{\tilde{\lambda}}$ and
+$\dot{\tilde{\lambda}}_c$  can be derived. By substituting the right
+side of the controller into the equation of motion for travel the
+equation becomes:
+
 \begin{equation}
 \label{eq:p controller in travel EoM}
-	\ddot{\tilde{\lambda}} = K_3(K_{rp}(\dot{\tilde{\lambda}}_c - \dot{\tilde{\lambda}}))
+\ddot{\tilde{\lambda}} = K_3(K_{rp}(\dot{\tilde{\lambda}}_c - \dot{\tilde{\lambda}}))
 \end{equation}
-After taking the laplace transform and rearranging terms, the transfer function is as follows:
+After taking the laplace transform and rearranging terms, the transfer
+function is as follows:
+
 \begin{equation}
 \label{eq:Transfer function between travel and desired travel}
-	\frac{\dot{\tilde{\lambda}}(s)}{\dot{\tilde{\lambda}}_c(s)} = \frac{K_3K_{rp}}{s + K_3K_{rp}}
+\frac{\dot{\tilde{\lambda}}(s)}{\dot{\tilde{\lambda}}_c(s)} = \frac{K_3K_{rp}}{s + K_3K_{rp}}
 \end{equation}
-This controller was quite quick and stable after correctly tuning $K_{rp}$. The value that was deemed best was $K_{rp}$ = \todo{fill in this value}. Higher values of $K_{rp}$ led to \todo{Describe performance}, while lower values of $K_{rp}$ led to \todo{describe performance}.  It was not nessecary to add a gain to the x value of the joystick to produce quick and accurate control.
-
-
+This controller was quite quick and stable after correctly tuning
+$K_{rp}$. The value that was deemed best was $K_{rp}$ = \todo{fill in
+  this value}. Higher values of $K_{rp}$ led to \todo{Describe
+  performance}, while lower values of $K_{rp}$ led to \todo{describe
+  performance}.  It was not nessecary to add a gain to the x value of
+the joystick to produce quick and accurate control.

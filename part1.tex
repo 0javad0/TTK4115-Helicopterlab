@@ -89,20 +89,23 @@ l_hcos(e)$. Furthermore, the horizontal components
   J_\lambda\ddot{\lambda} &= arm_h
 \end{align*}
 
-The equations \cref{eq:pitch EoM}, \ref{eq:elevation EoM}, and (3) corresponds to (2a), (2b), and (2c) respectively of the assignment \cite[p.13]{assignment}
+The equations \cref{eq:pitch EoM}, \ref{eq:elevation EoM}, and (3)
+corresponds to (2a), (2b), and (2c) respectively of the assignment
+\cite[p.13]{assignment}
+
 
 \subsection{Problem 2}
 To linearize the system about the point with all state variables equal
 to zero $(p, e, \lambda)^T = \dot{p},(\dot{e},\dot{\lambda}=^T $ = (0, 0, 0))
-the inputs in the equations of motion ($V^{*}_{s} \text{and} V^{*}_{d}$) must be set to
-values that make this an equilibrium point.
+the inputs in the equations of motion ($V^{*}_{s} \text{and}
+V^{*}_{d}$) must be set to values that make this an equilibrium point.
 
 At the linearization point, the equation of motion for pitch
 \ref{eq:pitch EoM} reduces to $0 = L_{1} *
 V^{*}_{d}$ therefore
 :
 \begin{equation}
-	\label{eq:V^*_d value}
+\label{eq:V^*_d value}
   V^{*}_{d} = 0
 \end{equation}
 At the linearization point, the equation of motion for elevation
@@ -203,7 +206,10 @@ plugging in the equilibrium values.
     0 & 0
   \end{bmatrix}
 \end{equation}
-where $L_1, L_2, L_3$ and $L_4$ were calculated in Section 1.1 and $J_p, J_e$ and $J_\lambda$ were given in the assignment description \cite[p.14]{assignment}.
+where $L_1, L_2, L_3$ and $L_4$ were calculated in Section 1.1 and
+$J_p, J_e$ and $J_\lambda$ were given in the assignment description
+\cite[p.14]{assignment}.
+
 
 The linearized equations of motion can therefore be written in the
 following form:
@@ -213,15 +219,33 @@ following form:
   \begin{align}
     \ddot{\tilde{p}} &= K_1\tilde{V}_d \qquad K_1 = \frac{L_1}{J_p} \label{eq:linearized pitch EoM}\\
     \ddot{\tilde{e}} &= K_2\tilde{V}_s \qquad K_2 = \frac{L_3}{J_e} \label{eq:linearized elevation EoM}\\
-    \ddot{\tilde{\lambda}} &= K_3\tilde{p} \qquad K_2 = \frac{L_4L_2}{J_\lambda L_3} \label{eq:linearized travel EoM}
+    \ddot{\tilde{\lambda}} &= K_3\tilde{p} \qquad K_3 = \frac{L_4L_2}{J_\lambda L_3} \label{eq:linearized travel EoM}
   \end{align}
 \end{subequations}
 \subsection{Problem 3}
-The helicopter is difficult to control using only feed-forward. The physical behaviour of the helicopter differs from the (2a) - (2c) \cite[p.13]{assignment} model because it does not take into consideration air resistance drag, ground effects nor the changes in length of the moment arm around the elevation axis. The equation \eqref{eq:linearized EoM} model is linearized around a point with all angles equal to zero, where elevation is defined as zero when the elevation arm is parallel to the table, pitch is defined as zero when the pitch arm is parallel to the table and travel angle is defined as zero at the initial travel angle. Since the physical system is not linear, the linear assumption breaks down when the system is too far from this point.
-\subsection{Problem 4}
-Elevation is the only variable that needs to be changed, since travel and pitch are zeroed correctly upon initialization. To correct for the offset of the arm at startup, subtract 30 degrees from the elevation to get the correct point of zero elevation.
+The helicopter is difficult to control using only feed-forward. The
+physical behaviour of the helicopter differs from the (2a) - (2c)
+\cite[p.13]{assignment} model because it does not take into
+consideration air resistance drag, ground effects nor the changes in
+length of the moment arm around the elevation axis. The equation
+\eqref{eq:linearized EoM} model is linearized around a point with all
+angles equal to zero, where elevation is defined as zero when the
+elevation arm is parallel to the table, pitch is defined as zero when
+the pitch arm is parallel to the table and travel angle is defined as
+zero at the initial travel angle. Since the physical system is not
+linear, the linear assumption breaks down when the system is too far
+from this point.
 
-The motor force constant, $K_f$, which relates $F_f$ and $V_f$ is calculated to be $-(L_2/l_h)*V^*_s$, and has the value 0.1332.
+\subsection{Problem 4}
+Elevation is the only variable that needs to be changed, since travel
+and pitch are zeroed correctly upon initialization. To correct for the
+offset of the arm at startup, subtract 30 degrees from the elevation
+to get the correct point of zero elevation.
+
+
+The motor force constant, $K_f$, which relates $F_f$ and $V_f$ is
+calculated to be $-(L_2/l_h)*V^*_s$, and has the value 0.1332.
+
 
 %%% Local Variables:
 %%% mode: latex
