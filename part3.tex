@@ -1,6 +1,8 @@
 \section{Part 3 - Multivariable control}
 \subsection{Problem 1}
-Here, we are to find the systems matrices $\boldsymbol{A}$ and $\boldsymbol{B}$. Trivially, they are:
+Here, we are to find the systems matrices $\boldsymbol{A}$ and
+$\boldsymbol{B}$. Trivially, they are:
+
 \begin{equation}
   \boldsymbol{A} = \begin{bmatrix}
     0 & 1 & 0 \\
@@ -15,7 +17,10 @@ Here, we are to find the systems matrices $\boldsymbol{A}$ and $\boldsymbol{B}$.
 \end{equation}
 
 \subsection{Problem 2}
-First, we are to examine the controllability of the system. We do that by finding the controllability matrix $\boldsymbol{\mathcal{C}}$ of the system, and see whether it has full rank or not:
+First, we are to examine the controllability of the system. We do that
+by finding the controllability matrix $\boldsymbol{\mathcal{C}}$ of
+the system, and see whether it has full rank or not:
+
 \begin{equation}
   \boldsymbol{\mathcal{C}} = \begin{bmatrix}
     \boldsymbol{B} & \boldsymbol{AB}
@@ -30,41 +35,46 @@ First, we are to examine the controllability of the system. We do that by findin
 which has full rank: $rank(\boldsymbol{\mathcal{C}}) = 3$, and is thus
 controllable.
 
-Second, we are to implement a LQR controller with reference feed-forward. Our $\boldsymbol{P}$ is defined such that as time goes to infinity, our states $\tilde{p}$ and $\tilde{\dot{e}}$ tend to their reference values $\tilde{p}_c$ and $\tilde{\dot{e}}_c$. This happens when
-$\dot{\boldsymbol{x}} = 0$, as the system reaches a stable equilibrium
-around the reference values:
+Second, we are to implement a LQR controller with reference
+feed-forward. Our $\boldsymbol{P}$ is defined such that as time goes
+to infinity, our states $\tilde{p}$ and $\tilde{\dot{e}}$ tend to
+their reference values $\tilde{p}_c$ and $\tilde{\dot{e}}_c$. This
+happens when $\dot{\boldsymbol{x}} = 0$, as the system reaches a
+stable equilibrium around the reference values:
 
 \begin{align*}
   \dot{\boldsymbol{x}} &= \boldsymbol{Ax} + \boldsymbol{Bu} \\
                        &= \boldsymbol{Ax} +
                          \boldsymbol{B}(\boldsymbol{Pr} -
                          \boldsymbol{Kx}) \\
-											 &= (\boldsymbol{A}-\boldsymbol{BK})\boldsymbol{x}
-												+ \boldsymbol{BPr} = 0
+                       &= (\boldsymbol{A}-\boldsymbol{BK})\boldsymbol{x}
+                         + \boldsymbol{BPr} = 0
 \end{align*}
-When $\boldsymbol{\dot{x}} = 0$, our $\boldsymbol{x}$ has reached its final value and we define $\boldsymbol{x} = \boldsymbol{x_\infty}$:
+When $\boldsymbol{\dot{x}} = 0$, our $\boldsymbol{x}$ has reached its
+final value and we define $\boldsymbol{x} = \boldsymbol{x_\infty}$:
+
 \begin{align*}
-(\boldsymbol{BK} - \boldsymbol{A})\boldsymbol{x_\infty} = \boldsymbol{BPr} \\
-\Leftrightarrow \boldsymbol{x_\infty} = (\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr} \\
-\Rightarrow \boldsymbol{y_\infty} = \boldsymbol{Cx_\infty} = \boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr}
+  (\boldsymbol{BK} - \boldsymbol{A})\boldsymbol{x_\infty} = \boldsymbol{BPr} \\
+  \Leftrightarrow \boldsymbol{x_\infty} = (\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr} \\
+  \Rightarrow \boldsymbol{y_\infty} = \boldsymbol{Cx_\infty} = \boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr}
 \end{align*}
 We see that our output $\boldsymbol{y_\infty}$ is equal to our reference $\boldsymbol{r}$ when:
 \begin{equation}
-\boldsymbol{P} = [\boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{B}]^{-1}
+  \boldsymbol{P} = [\boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{B}]^{-1}
 \end{equation}
 Therefore, we now have
 \begin{align*}
-\lim_{t\to\infty}\boldsymbol{y}(t) = \boldsymbol{y_\infty} =
-\begin{bmatrix}
-\tilde{p} \\
-\tilde{\dot{e}}
-\end{bmatrix}
-= 
-\begin{bmatrix}
-\tilde{p}_c \\
-\tilde{\dot{e}}_c
-\end{bmatrix}
-= \boldsymbol{r},
+  \lim_{t\to\infty}\boldsymbol{y}(t) = \boldsymbol{y_\infty} =
+  \begin{bmatrix}
+    \tilde{p} \\
+    \tilde{\dot{e}}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \tilde{p}_c \\
+    \tilde{\dot{e}}_c
+  \end{bmatrix}
+  = \boldsymbol{r},
 \end{align*}
 which is what we wanted.
 \subsection{Problem 3}
