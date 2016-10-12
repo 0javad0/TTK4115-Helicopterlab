@@ -1,6 +1,8 @@
 \section{Part 3 - Multivariable control}
 \subsection{Problem 1}
-Here, we are to find the systems matrices $\boldsymbol{A}$ and $\boldsymbol{B}$. Trivially, they are:
+Here, we are to find the systems matrices $\boldsymbol{A}$ and
+$\boldsymbol{B}$. Trivially, they are:
+
 \begin{equation}
   \boldsymbol{A} = \begin{bmatrix}
     0 & 1 & 0 \\
@@ -15,7 +17,10 @@ Here, we are to find the systems matrices $\boldsymbol{A}$ and $\boldsymbol{B}$.
 \end{equation}
 
 \subsection{Problem 2}
-First, we are to examine the controllability of the system. We do that by finding the controllability matrix $\boldsymbol{\mathcal{C}}$ of the system, and see whether it has full rank or not:
+First, we are to examine the controllability of the system. We do that
+by finding the controllability matrix $\boldsymbol{\mathcal{C}}$ of
+the system, and see whether it has full rank or not:
+
 \begin{equation}
   \boldsymbol{\mathcal{C}} = \begin{bmatrix}
     \boldsymbol{B} & \boldsymbol{AB}
@@ -39,18 +44,20 @@ around the reference values:
                        &= \boldsymbol{Ax} +
                          \boldsymbol{B}(\boldsymbol{Pr} -
                          \boldsymbol{Kx}) \\
-											 &= (\boldsymbol{A}-\boldsymbol{BK})\boldsymbol{x}
-												+ \boldsymbol{BPr} = 0
+                       &= (\boldsymbol{A}-\boldsymbol{BK})\boldsymbol{x}
+                         + \boldsymbol{BPr} = 0
 \end{align*}
-When $\boldsymbol{\dot{x}} = 0$, our $\boldsymbol{x}$ has reached its final value and we define $\boldsymbol{x} = \boldsymbol{x_\infty}$:
+When $\boldsymbol{\dot{x}} = 0$, our $\boldsymbol{x}$ has reached its
+final value and we define $\boldsymbol{x} = \boldsymbol{x_\infty}$:
+
 \begin{align*}
-(\boldsymbol{BK} - \boldsymbol{A})\boldsymbol{x_\infty} = \boldsymbol{BPr} \\
-\Leftrightarrow \boldsymbol{x_\infty} = (\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr} \\
-\Rightarrow \boldsymbol{y_\infty} = \boldsymbol{Cx_\infty} = \boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr}
+  (\boldsymbol{BK} - \boldsymbol{A})\boldsymbol{x_\infty} = \boldsymbol{BPr} \\
+  \Leftrightarrow \boldsymbol{x_\infty} = (\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr} \\
+  \Rightarrow \boldsymbol{y_\infty} = \boldsymbol{Cx_\infty} = \boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr}
 \end{align*}
 We see that our output $\boldsymbol{y_\infty}$ is equal to our reference $\boldsymbol{r}$ when:
 \begin{equation}
-\boldsymbol{P} = [\boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{B}]^{-1}
+  \boldsymbol{P} = [\boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{B}]^{-1}
 \end{equation}
 Therefore, we now have
 \begin{align*}
@@ -75,6 +82,7 @@ With integral effect, this deviation in elevation rate is asymptotically removed
 
 %Spør om i hvilken grad vi må beskrive at P er det den er.
 %Spør om forklaringen over er så god som den kan være.
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "report_main"

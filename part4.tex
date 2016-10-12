@@ -1,0 +1,82 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "report_main"
+%%% End:
+
+\section{Part 4 -- State estimation}
+This section consists of the development of an observer to estimate the
+nonmeasured angular velocities.
+%
+\subsection{Problem 1}
+By describing the system in \cref{eq:linearized EoM} in the following
+state-space form
+%
+\begin{align}
+  \begin{split}
+    \dot{\bm{x}} &= \bm{Ax} + \bm{Bu} \\
+    \bm{y} &= \bm{Cx}
+  \end{split}
+\end{align}
+%
+where  $\bm{A}$, $\bm{B}$ and $\bm{C}$ are matrices. The state -,
+input - and output vector are given by
+%
+\begin{equation}
+  \label{eq:state_space_vectors}
+  \bm{x} =
+  \begin{bmatrix}
+    \tilde{p} \\
+    \dot{\tilde{p}} \\
+    \tilde{e} \\
+    \dot{\tilde{e}} \\
+    \tilde{\lambda} \\
+    \dot{\tilde{\lambda}} \\
+  \end{bmatrix}
+  , \quad \bm{u} =
+  \begin{bmatrix}
+    \tilde{V_s} \\
+    \tilde{V_d} \\
+  \end{bmatrix}
+  \quad \text{and} \quad \bm{y} =
+  \begin{bmatrix}
+    \tilde{p} \\
+    \tilde{e} \\
+    \tilde{\lambda}\\
+  \end{bmatrix}
+\end{equation}
+%
+This gives the following $\bm{A}$, $\bm{B}$ and $\bm{C}$ matrices
+%
+\begin{equation}
+  \label{eq:state_space_A_B_C}
+  \bm{A} =
+  \begin{bmatrix}
+    0 & 1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 1 \\
+    K_3 & 0 & 0 & 0 & 0 & 0 \\
+  \end{bmatrix}
+  , \quad \bm{B} =
+  \begin{bmatrix}
+    0 & 0 \\
+    0 & K_1 \\
+    0 & 0 \\
+    K_2 & 0 \\
+    0 & 0 \\
+    0 & 0 \\
+  \end{bmatrix}
+  \quad \text{and} \quad \bm{C} =
+  \begin{bmatrix}
+    1 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 \\
+  \end{bmatrix}
+\end{equation}
+%
+Where $K_1$, $K_2$ and $K_3$ are given by \cref{eq:linearized EoM}.
+%
+\subsection{Problem 2}
+
+\subsection{Problem 3}

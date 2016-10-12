@@ -33,11 +33,14 @@ around the pitch axis in the clockwise direction as shown in
               &= l_p(m_pg - mp_g + K_fV_f - V_b) \\
               &= l_pK_f(V_f-V_b)
 \end{align*}
+
 Where the lengths including $l_p$ is shown in \cref{fig:helicopter_model_masses}. Since $V_d = V_f-V_b$, we can write this as:
+
 \begin{equation}
+\label{eq:pitch EoM}
   J_p\ddot{p} = l_pK_fVd
 \end{equation}
-Here, we can see that $L_1 = l_pK_f$.
+Therefore $L_1 = l_pK_f$.
 
 The equation of motion for the elevation angle is found similarly
 through the momentum in the counter-clockwise direction around the
@@ -58,12 +61,13 @@ We can immediately substitute $V_s = V_f + V_b$, and simplify:
   J_e\ddot{e} &= l_ccos(e)m_cg - l_hcos(e)(2m_pg - K_fcos(p)V_s) \\
               &= cos(e)(l_cm_cg - 2l_hm_pg) + l_hK_fV_scos(e)cos(p)
 \end{align*}
-Here, we have (as the author of the exercise) counted the cos(e)
+Here, we have (as the author of the exercise\todo{Should we cite this?}) counted the cos(e)
 factor of the $V_s$ term as negligible, and set it to 1. \todo{Forklar
   hvor cos(p) kommer fra - og lag ny figur. Bruk denne til å forklare
   (2c)/(3) også.} The resulting equation has the form:
 
 \begin{equation}
+\label{eq:elevation EoM}
   J_e\ddot{e} = g(l_cm_c - 2l_hm_p)cos(e) + l_hK_fV_scos(p)
 \end{equation}
 Note that $L_2 = g(l_cm_c-2l_hm_p)$, and $L_3 = l_hK_f$.
@@ -89,37 +93,41 @@ l_hcos(e)$. Furthermore, the horizontal components
 \end{figure}
 
 \begin{align*}
+\label{eq:lambda EoM}
   J_\lambda\ddot{\lambda} &= arm_h
 \end{align*}
 
-The equations (1), (2), and (3) corresponds to (2a), (2b), and (2c) respectively of the assignment \cite[p.13]{assignment}
+The equations \cref{eq:pitch EoM}, \ref{eq:elevation EoM}, and (3) correspond to equations (2a), (2b), and (2c) respectively from the assignment \cite[p.13]{assignment}
 
 \subsection{Problem 2}
 To linearize the system about the point with all state variables equal
-to zero $(p, e, \lambda)^T = \dot{p},(\dot{e},\dot{\lambda}=^T $ = (0, 0, 0))
-the inputs in the equations of motion ($V^{*}_{s} \text{and} V^{*}_{d}$) must be set to
+to zero ($(p, e, \lambda)^T = (\dot{p},\dot{e},\dot{\lambda})^T $ = (0, 0, 0))
+the inputs in the equations of motion ($V^{*}_{s} \text{ and } V^{*}_{d}$) must be set to
 values that make this an equilibrium point.
 
-At the linearization point, the equation of motion for pitch
-(\todo{ADD EQUATION REFERENCE}) reduces to $0 = L_{1} *
+At the linearization point, the equation of motion for pitch,
+\cref{eq:pitch EoM}, reduces to $0 = L_{1} *
 V^{*}_{d}$ therefore
 :
 \begin{equation}
+\label{eq:V^*_d value}
   V^{*}_{d} = 0
 \end{equation}
-At the linearization point, the equation of motion for elevation
-(\todo{ADD EQUATION REFERENCE}) reduces to $0 = L_{2} +
+At the linearization point, the equation of motion for elevation,
+\cref{eq:elevation EoM}, reduces to $0 = L_{2} +
 L_{3}*V^{*}_{s}$ therefore:
 
 \begin{equation}
+\label{eq:V^*_s value}
   V^{*}_{s} = -L_{2} / L_{3}
 \end{equation}
 While the equation of motion for travel (\todo{ADD EQUATION
-  REFERENCE}) at the linearization point simply reduces to 0 = 0.\\
+  REFERENCE}) at the linearization point simply reduces to 0 = 0.
 The following transformation is performed to simplify the analysis
-\todo{Add cite of assignment here}:
+\cite[p.14]{assignment}:
 
 \begin{equation}
+\label{eq:transformation}
   \begin{bmatrix}
     \tilde{p} \\
     \tilde{e} \\
@@ -156,16 +164,18 @@ The following transformation is performed to simplify the analysis
 The equations of motion in the transformed system are therefore:
 \begin{subequations}
   \begin{align}
-    J_p\ddot{\tilde{p}} &= L_1\tilde{V_d} \\
-    J_e\ddot{\tilde{e}} &= L_2cos(\tilde{e}) + L_3(\tilde{V_s}+L_2/L_3)cos(\tilde{p}) \\
-    J_{\lambda}\ddot{\tilde{\lambda}} &= L_4(\tilde{V_s}+L_2/L_3)cos(\tilde{e})sin(\tilde{p})
+    J_p\ddot{\tilde{p}} &= L_1\tilde{V_d} \label{eq:transformed pitch EoM}\\
+    J_e\ddot{\tilde{e}} &= L_2cos(\tilde{e}) + L_3(\tilde{V_s}+L_2/L_3)cos(\tilde{p}) \label{eq:transformed elevation EoM}\\
+    J_{\lambda}\ddot{\tilde{\lambda}} &= L_4(\tilde{V_s}+L_2/L_3)cos(\tilde{e})sin(\tilde{p}) \label{eq:transformed travel EoM}
   \end{align}
 \end{subequations}
+
 By choosing the state to be x = ($\tilde{p}$, $\tilde{e}$,
 $\tilde{\lambda}$, \textit{$\dot{p}$, $\dot{e}$,$\dot{\lambda}$}) the
 nonlinear state equations become:
 
 \begin{subequations}
+\label{eq:full state equations}
   \begin{align}
     \dot{x}_1 &= x_4 \\
     \dot{x}_2 &= x_5 \\
@@ -181,6 +191,7 @@ Jacobians of h with respect to the state and the input and then
 plugging in the equilibrium values.
 
 \begin{equation}
+\label{eq:Linearized Jacobians}
   \frac{\partial h}{\partial x} = A =
   \begin{bmatrix}
     0 & 0 & 0 & 1 & 0 & 0 \\
@@ -201,22 +212,46 @@ plugging in the equilibrium values.
     0 & 0
   \end{bmatrix}
 \end{equation}
-where $L_1, L_2, L_3$ and $L_4$ were calculated in Section 1.1
-\todo{maybe cite this} and $J_p, J_e$ and $J_\lambda$ were given in
-the assignment description \todo{add cite to assignment}.
+where $L_1, L_2, L_3$ and $L_4$ were calculated in Section 1.1 and
+$J_p, J_e$ and $J_\lambda$ were given in the assignment description
+\cite[p.14]{assignment}.
+
 
 The linearized equations of motion can therefore be written in the
 following form:
 
 \begin{subequations}
+\label{eq:linearized EoM}
   \begin{align}
-    \ddot{\tilde{p}} &= K_1\tilde{V}_d \qquad K_1 = \frac{L_1}{J_p}\\
-    \ddot{\tilde{e}} &= K_2\tilde{V}_s \qquad K_2 = \frac{L_3}{J_e}\\
-    \ddot{\tilde{\lambda}} &= K_3\tilde{p} \qquad K_2 = \frac{L_4L_2}{J_\lambda L_3}
+    \ddot{\tilde{p}} &= K_1\tilde{V}_d \qquad K_1 = \frac{L_1}{J_p} \label{eq:linearized pitch EoM}\\
+    \ddot{\tilde{e}} &= K_2\tilde{V}_s \qquad K_2 = \frac{L_3}{J_e} \label{eq:linearized elevation EoM}\\
+    \ddot{\tilde{\lambda}} &= K_3\tilde{p} \qquad K_3 = \frac{L_4L_2}{J_\lambda L_3} \label{eq:linearized travel EoM}
   \end{align}
 \end{subequations}
 \subsection{Problem 3}
+The helicopter is difficult to control using only feed-forward. The
+physical behaviour of the helicopter differs from the (2a) - (2c)
+\cite[p.13]{assignment} model because it does not take into
+consideration air resistance drag, ground effects nor the changes in
+length of the moment arm around the elevation axis. The equation
+\eqref{eq:linearized EoM} model is linearized around a point with all
+angles equal to zero, where elevation is defined as zero when the
+elevation arm is parallel to the table, pitch is defined as zero when
+the pitch arm is parallel to the table and travel angle is defined as
+zero at the initial travel angle. Since the physical system is not
+linear, the linear assumption breaks down when the system is too far
+from this point.
+
 \subsection{Problem 4}
+Elevation is the only variable that needs to be changed, since travel
+and pitch are zeroed correctly upon initialization. To correct for the
+offset of the arm at startup, subtract 30 degrees from the elevation
+to get the correct point of zero elevation.
+
+
+The motor force constant, $K_f$, which relates $F_f$ and $V_f$ is
+calculated to be $-(L_2/l_h)*V^*_s$, and has the value 0.1332.
+
 
 %%% Local Variables:
 %%% mode: latex
