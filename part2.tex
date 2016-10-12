@@ -94,7 +94,7 @@ is under damped and the poles move away from each other vertically
 from the critically damped point.
 
 With the PD controller, it was significantly easier to control the
-helicopter than with just feed forward joystick control.
+helicopter than with just feed forward joystick control as no scaling of the joystick input was needed.
 
 \subsection{Problem 2}
 By plugging the P controller for travel
@@ -121,13 +121,14 @@ function is as follows:
 \frac{\dot{\tilde{\lambda}}(s)}{\dot{\tilde{\lambda}}_c(s)} = \frac{K_3K_{rp}}{s + K_3K_{rp}}
 \end{equation}
 This controller was quite quick and stable after correctly tuning
-$K_{rp}$. The value that was deemed best was $K_{rp}$ = \todo{fill in
-  this value}. Higher values of $K_{rp}$ led to \todo{Describe
-  performance}, while lower values of $K_{rp}$ led to \todo{describe
-  performance}.  It was not nessecary to add a gain to the x value of
+$K_{rp}$. The value that was deemed best was $K_{rp}$ = -2. Higher values, or more negative values, of $K_{rp}$ led to large oscillations, while lower values, or less negative values, of $K_{rp}$ led to a slower response to the joysticks input.  It was not necessary to add a gain to the x value of
 the joystick to produce quick and accurate control.
 
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "report_main"
-%%% End:
+\begin{figure}
+\caption{Simulink implementation of PD controller}
+	\centering
+		\includegraphics{images/pd_pitch_control.pdf}
+	\label{fig:Pitch controller}
+\end{figure}
+
+% width=\textwidth, [viewport=20mm 20mm 20mm 20mm]
