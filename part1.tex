@@ -6,20 +6,21 @@
 \section{Part 1 - Mathematical modeling}
 \subsection{Problem 1}
 
-We use the helicopter model shown in \cref{fig:helicopter_model_forces} and \cref{fig:helicopter_model_masses} as our starting point for deriving the equations of motion.
+We use the helicopter model shown in \cref{fig:helicopter_model_forces} and
+\cref{fig:helicopter_model_masses} as our starting point for deriving
+the equations of motion.
 
 \begin{figure}[hbp]
-  \caption{the helicopter model figure 7 from the assignment depicting forces and joint axes
-    \cite[p.12]{assignment}.}
-
+  \caption{the helicopter model figure 7 from the assignment depicting
+    forces and joint axes \cite[p.12]{assignment}.}
   \label{fig:helicopter_model_forces}
   \includegraphics[width=\textwidth]{images/helicopter_model_forces}
 \end{figure}
 
 \begin{figure}[H]
-  \caption{the helicopter model figure 8 from the assignment depicting masses and distances between the joint axes and the point masses
+  \caption{the helicopter model figure 8 from the assignment depicting
+    masses and distances between the joint axes and the point masses
     \cite[p.13]{assignment}.}
-
   \label{fig:helicopter_model_masses}
   \includegraphics[width=\textwidth]{images/helicopter_model_masses}
 \end{figure}
@@ -34,10 +35,12 @@ around the pitch axis in the clockwise direction as shown in
               &= l_pK_f(V_f-V_b)
 \end{align*}
 
-Where the lengths including $l_p$ is shown in \cref{fig:helicopter_model_masses}. Since $V_d = V_f-V_b$, we can write this as:
+Where the lengths including $l_p$ is shown in
+\cref{fig:helicopter_model_masses}. Since $V_d = V_f-V_b$, we can
+write this as:
 
 \begin{equation}
-\label{eq:pitch EoM}
+  \label{eq:pitch EoM}
   J_p\ddot{p} = l_pK_fVd
 \end{equation}
 Therefore $L_1 = l_pK_f$.
@@ -46,9 +49,7 @@ The equation of motion for the elevation angle is found similarly through the mo
 \begin{align*}
   J_e\ddot{e} &= arm_cF_{g,c} - arm_h(F_{g,f}+F_{g,b} - (F_{f,v} + F_{b,v}))
 \end{align*}
-where $arm_c$ is the moment arm between the counterweight point mass
-and the elevation axis, and $arm_h$ is the moment arm between any of
-the two motor point masses and the elevation axis, which also is the moment arm for the components of the two motor forces perpendicular to the elevation axis. $F_{f,v}$ is the vertical component of $F_f$, and $F_{b,v}$ is the vertical component of $F_b$. As shown in \cref{fig:elevation_model}, $arm_c = l_ccos(e)$, and $arm_h = l_hcos(e)$.
+where $arm_c$ is the moment arm between the counterweight point mass and the elevation axis, and $arm_h$ is the moment arm between any of the two motor point masses and the elevation axis, which also is the moment arm for the components of the two motor forces perpendicular to the elevation axis. $F_{f,v}$ is the vertical component of $F_f$, and $F_{b,v}$ is the vertical component of $F_b$. As shown in \cref{fig:elevation_model}, $arm_c = l_ccos(e)$, and $arm_h = l_hcos(e)$.
 \begin{figure}[H]
   \caption{moment arms around the elevation axis. Also, the positive direction of momentum is displayed as counter-clockwise around the e-axis.}
   \label{fig:elevation_model}
@@ -71,18 +72,16 @@ We substitute in $V_s = V_f + V_b$ and the two moment arms:
               &= cos(e)(l_cm_cg - 2l_hm_pg) + l_hK_fV_scos(e)cos(p)
 \end{align*}
 Here, we have (as the author of the exercise \cite{assignment}) counted the cos(e)
-factor of the $V_s$ term as negligible, and set it to 1. The resulting equation has the form:
+factor of the $V_s$ term as negligible, and set it to 1.\todo{Ser nå at neglisjeringen av cos(e) for de to motorkreftene ikke er en neglisjering i det hele tatt. De har ikke en cos(e) faktor fordi deres rettning forandrer seg med e, slik at de alltid er vinkelrette med lengde $l_h$} The resulting equation has the form:
 
 \begin{equation}
-\label{eq:elevation EoM}
+  \label{eq:elevation EoM}
   J_e\ddot{e} = g(l_cm_c - 2l_hm_p)cos(e) + l_hK_fV_scos(p)
 \end{equation}
 We see that $L_2 = g(l_cm_c-2l_hm_p)$, and $L_3 = l_hK_f$.
 
 Finally, the equation of motion for the travel angle is found through
-the momentum around the travel axis in the  clockwise direction, as shown in \cref{fig:helicopter_model_forces}. As seen in \cref{fig:pitch_model}, the only forces with a moment arm
-perpendicular to the travel axis are the components of the motor
-forces in the horizontal direction, $F_{f,h} = F_fsin(p)$ and $F_{b,h} = F_bsin(p)$, which as we see from \cref{fig:elevation_model} have the moment arm of length $arm_h =
+the momentum around the travel axis in the  clockwise direction, as shown in \cref{fig:helicopter_model_forces}. As seen in \cref{fig:pitch_model}, the only forces with a moment arm perpendicular to the travel axis are the components of the motor forces in the horizontal direction, $F_{f,h} = F_fsin(p)$ and $F_{b,h} = F_bsin(p)$, has \cref{fig:elevation_model} have the moment arm of length $arm_h =
 l_hcos(e)$:
 \begin{align*}
   J_\lambda\ddot{\lambda} &= arm_h(F_{f,h} + F_{b,h}) \\
@@ -94,7 +93,6 @@ Again substituting $V_s = V_f + V_b$, and we get the final equation of motion:
 J_\lambda\ddot{\lambda} = l_hK_fV_scos(e)sin(p)
 \end{equation}
 We see that $L_4 = l_hK_f$.
-
 
 The equations \cref{eq:pitch EoM}, \cref{eq:elevation EoM}, and \cref{eq:lambda EoM} correspond to equations (2a), (2b), and (2c) respectively from the assignment \cite[p.13]{assignment}, and it has been shown \todo{QED?}.
 
@@ -109,7 +107,7 @@ At the linearization point, the equation of motion for pitch,
 V^{*}_{d}$ therefore
 :
 \begin{equation}
-\label{eq:V^*_d value}
+  \label{eq:V^*_d value}
   V^{*}_{d} = 0
 \end{equation}
 At the linearization point, the equation of motion for elevation,
@@ -117,7 +115,7 @@ At the linearization point, the equation of motion for elevation,
 L_{3}*V^{*}_{s}$ therefore:
 
 \begin{equation}
-\label{eq:V^*_s value}
+  \label{eq:V^*_s value}
   V^{*}_{s} = -L_{2} / L_{3}
 \end{equation}
 While the equation of motion for travel (\todo{ADD EQUATION
@@ -126,7 +124,7 @@ The following transformation is performed to simplify the analysis
 \cite[p.14]{assignment}:
 
 \begin{equation}
-\label{eq:transformation}
+  \label{eq:transformation}
   \begin{bmatrix}
     \tilde{p} \\
     \tilde{e} \\
@@ -174,7 +172,7 @@ $\tilde{\lambda}$, \textit{$\dot{p}$, $\dot{e}$,$\dot{\lambda}$}) the
 nonlinear state equations become:
 
 \begin{subequations}
-\label{eq:full state equations}
+  \label{eq:full state equations}
   \begin{align}
     \dot{x}_1 &= x_4 \\
     \dot{x}_2 &= x_5 \\
@@ -190,7 +188,7 @@ Jacobians of h with respect to the state and the input and then
 plugging in the equilibrium values.
 
 \begin{equation}
-\label{eq:Linearized Jacobians}
+  \label{eq:Linearized Jacobians}
   \frac{\partial h}{\partial x} = A =
   \begin{bmatrix}
     0 & 0 & 0 & 1 & 0 & 0 \\
@@ -220,7 +218,7 @@ The linearized equations of motion can therefore be written in the
 following form:
 
 \begin{subequations}
-\label{eq:linearized EoM}
+  \label{eq:linearized EoM}
   \begin{align}
     \ddot{\tilde{p}} &= K_1\tilde{V}_d \qquad K_1 = \frac{L_1}{J_p} \label{eq:linearized pitch EoM}\\
     \ddot{\tilde{e}} &= K_2\tilde{V}_s \qquad K_2 = \frac{L_3}{J_e} \label{eq:linearized elevation EoM}\\
@@ -228,12 +226,14 @@ following form:
   \end{align}
 \end{subequations}
 \subsection{Problem 3}
+\todo[inline]{Check if we added gain to the output of joystick}
 The helicopter is difficult to control using only feed-forward. The
 physical behaviour of the helicopter differs from the (2a) - (2c)
 \cite[p.13]{assignment} model because it does not take into
 consideration air resistance drag, ground effects nor the changes in
-length of the moment arm around the elevation axis. The equation
-\eqref{eq:linearized EoM} model is linearized around a point with all
+length of the moment arm around the elevation axis. In
+\cref{eq:linearized EoM} the model is linearized around a point with
+all
 angles equal to zero, where elevation is defined as zero when the
 elevation arm is parallel to the table, pitch is defined as zero when
 the pitch arm is parallel to the table and travel angle is defined as
