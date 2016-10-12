@@ -6,7 +6,7 @@
 \section{Part 1 - Mathematical modeling}
 \subsection{Problem 1}
 
-We use the helicopter model \cref{fig:helicopter_model} as our
+The helicopter model in \cref{fig:helicopter_model} is used as a
 starting point for deriving the equations of motion.
 
 \begin{figure}[hbp]
@@ -26,12 +26,12 @@ around the pitch axis in the clockwise direction as shown in
               &= l_p(m_pg - mp_g + K_fV_f - V_b) \\
               &= l_pK_f(V_f-V_b)
 \end{align*}
-Since $V_d = V_f-V_b$, we can write this as:
+Since $V_d = V_f-V_b$, this can be simplified to:
 \begin{equation}
 \label{eq:pitch EoM}
   J_p\ddot{p} = l_pK_fVd
 \end{equation}
-Here, we can see that $L_1 = l_pK_f$.
+Therefore $L_1 = l_pK_f$.
 
 The equation of motion for the elevation angle is found similarly
 through the momentum in the counter-clockwise direction around the
@@ -46,14 +46,13 @@ the two motor point masses and the elevation axis. As shown in
 \cref{fig:elevation_model}, $arm_c = l_ccos(e)$, and $arm_h =
 l_hcos(e)$. \todo{Husk at figuren må være som jeg (Daniel) har i
   notatene her, da er det 100 prosent tydelig hva $arm_c$ og $arm_h$
-  blir. Kan godt gjøre det enda litt mer detaljert.} We can
-immediately substitute $V_s = V_f + V_b$, and simplify:
+  blir. Kan godt gjøre det enda litt mer detaljert.} $V_s = V_f + V_b$ can be immediately substituted in and the equation simplified:
 
 \begin{align*}
   J_e\ddot{e} &= l_ccos(e)m_cg - l_hcos(e)(2m_pg - K_fcos(p)V_s) \\
               &= cos(e)(l_cm_cg - 2l_hm_pg) + l_hK_fV_scos(e)cos(p)
 \end{align*}
-Here, we have (as the author of the exercise) counted the cos(e)
+Here, we have (as the author of the exercise\todo{Should we cite this?}) counted the cos(e)
 factor of the $V_s$ term as negligible, and set it to 1. \todo{Forklar
   hvor cos(p) kommer fra - og lag ny figur. Bruk denne til å forklare
   (2c)/(3) også.} The resulting equation has the form:
@@ -89,27 +88,24 @@ l_hcos(e)$. Furthermore, the horizontal components
   J_\lambda\ddot{\lambda} &= arm_h
 \end{align*}
 
-The equations \cref{eq:pitch EoM}, \ref{eq:elevation EoM}, and (3)
-corresponds to (2a), (2b), and (2c) respectively of the assignment
-\cite[p.13]{assignment}
-
+The equations \cref{eq:pitch EoM}, \ref{eq:elevation EoM}, and (3) correspond to equations (2a), (2b), and (2c) respectively from the assignment \cite[p.13]{assignment}
 
 \subsection{Problem 2}
 To linearize the system about the point with all state variables equal
-to zero $(p, e, \lambda)^T = \dot{p},(\dot{e},\dot{\lambda}=^T $ = (0, 0, 0))
-the inputs in the equations of motion ($V^{*}_{s} \text{and}
-V^{*}_{d}$) must be set to values that make this an equilibrium point.
+to zero ($(p, e, \lambda)^T = (\dot{p},\dot{e},\dot{\lambda})^T $ = (0, 0, 0))
+the inputs in the equations of motion ($V^{*}_{s} \text{ and } V^{*}_{d}$) must be set to
+values that make this an equilibrium point.
 
-At the linearization point, the equation of motion for pitch
-\ref{eq:pitch EoM} reduces to $0 = L_{1} *
+At the linearization point, the equation of motion for pitch,
+\cref{eq:pitch EoM}, reduces to $0 = L_{1} *
 V^{*}_{d}$ therefore
 :
 \begin{equation}
 \label{eq:V^*_d value}
   V^{*}_{d} = 0
 \end{equation}
-At the linearization point, the equation of motion for elevation
-\ref{eq:elevation EoM} reduces to $0 = L_{2} +
+At the linearization point, the equation of motion for elevation,
+\cref{eq:elevation EoM}, reduces to $0 = L_{2} +
 L_{3}*V^{*}_{s}$ therefore:
 
 \begin{equation}
