@@ -1,0 +1,42 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "report_main"
+%%% End:
+
+\section{Part 4 - State Estimation}
+\subsection{Problem 1}
+
+By describing the system in \cref{eq:linearized EoM} in state space form, with a state $x = (\tilde{p}, \tilde{\dot{p}}, \tilde{e}, \tilde{\dot{e}}, \tilde{\lambda}, \tilde{\dot{\lambda}})$, an input $u = (\tilde{V}_s, \tilde{V}_d)$ and an output $y = (\tilde{p}, \tilde{e}, \tilde{\lambda})$, the following matrices are found:
+
+\begin{equation}
+\label{eq:State space for estimator}
+  A =
+  \begin{bmatrix}
+    0   & 1 & 0 & 0 & 0 & 0 \\
+    0   & 0 & 0 & 0 & 0 & 0 \\
+    0   & 0 & 0 & 1 & 0 & 0 \\
+    0   & 0 & 0 & 0 & 0 & 0 \\
+    0   & 0 & 0 & 0 & 0 & 1 \\
+    K_3 & 0 & 0 & 0 & 0 & 0
+  \end{bmatrix}
+  \qquad
+  B =
+  \begin{bmatrix}
+    0   & 0   \\
+    0   & K_1 \\
+    0   & 0   \\
+    K_2 & 0   \\
+    0   & 0   \\
+    0   & 0
+  \end{bmatrix}
+	\qquad
+	C = 
+	\begin{bmatrix}
+	1 & 0 & 0 & 0 & 0 & 0 \\
+	0 & 0 & 1 & 0 & 0 & 0 \\
+	0 & 0 & 0 & 0 & 1 & 0 
+	\end{bmatrix}
+\end{equation}
+
+where $K_1, K_2$ and $K_3$ are constants defined in \cref{eq:linearized EoM}.
