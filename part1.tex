@@ -6,20 +6,21 @@
 \section{Part 1 - Mathematical modeling}
 \subsection{Problem 1}
 
-We use the helicopter model shown in \cref{fig:helicopter_model_forces} and \cref{fig:helicopter_model_masses} as our starting point for deriving the equations of motion.
+We use the helicopter model shown in \cref{fig:helicopter_model_forces} and
+\cref{fig:helicopter_model_masses} as our starting point for deriving
+the equations of motion.
 
 \begin{figure}[hbp]
-  \caption{the helicopter model figure 7 from the assignment depicting forces and joint axes
-    \cite[p.12]{assignment}.}
-
+  \caption{the helicopter model figure 7 from the assignment depicting
+    forces and joint axes \cite[p.12]{assignment}.}
   \label{fig:helicopter_model_forces}
   \includegraphics[width=\textwidth]{images/helicopter_model_forces}
 \end{figure}
 
 \begin{figure}[H]
-  \caption{the helicopter model figure 8 from the assignment depicting masses and distances between the joint axes and the point masses
+  \caption{the helicopter model figure 8 from the assignment depicting
+    masses and distances between the joint axes and the point masses
     \cite[p.13]{assignment}.}
-
   \label{fig:helicopter_model_masses}
   \includegraphics[width=\textwidth]{images/helicopter_model_masses}
 \end{figure}
@@ -34,10 +35,12 @@ around the pitch axis in the clockwise direction as shown in
               &= l_pK_f(V_f-V_b)
 \end{align*}
 
-Where the lengths including $l_p$ is shown in \cref{fig:helicopter_model_masses}. Since $V_d = V_f-V_b$, we can write this as:
+Where the lengths including $l_p$ is shown in
+\cref{fig:helicopter_model_masses}. Since $V_d = V_f-V_b$, we can
+write this as:
 
 \begin{equation}
-\label{eq:pitch EoM}
+  \label{eq:pitch EoM}
   J_p\ddot{p} = l_pK_fVd
 \end{equation}
 Therefore $L_1 = l_pK_f$.
@@ -67,7 +70,7 @@ factor of the $V_s$ term as negligible, and set it to 1. \todo{Forklar
   (2c)/(3) også.} The resulting equation has the form:
 
 \begin{equation}
-\label{eq:elevation EoM}
+  \label{eq:elevation EoM}
   J_e\ddot{e} = g(l_cm_c - 2l_hm_p)cos(e) + l_hK_fV_scos(p)
 \end{equation}
 Note that $L_2 = g(l_cm_c-2l_hm_p)$, and $L_3 = l_hK_f$.
@@ -93,11 +96,13 @@ l_hcos(e)$. Furthermore, the horizontal components
 \end{figure}
 
 \begin{align*}
-\label{eq:lambda EoM}
+  \label{eq:lambda EoM}
   J_\lambda\ddot{\lambda} &= arm_h
 \end{align*}
 
-The equations \cref{eq:pitch EoM}, \ref{eq:elevation EoM}, and (3) correspond to equations (2a), (2b), and (2c) respectively from the assignment \cite[p.13]{assignment}
+The equations \cref{eq:pitch EoM}, \ref{eq:elevation EoM}, and (3)
+correspond to equations (2a), (2b), and (2c) respectively from the
+assignment \cite[p.13]{assignment}
 
 \subsection{Problem 2}
 To linearize the system about the point with all state variables equal
@@ -110,7 +115,7 @@ At the linearization point, the equation of motion for pitch,
 V^{*}_{d}$ therefore
 :
 \begin{equation}
-\label{eq:V^*_d value}
+  \label{eq:V^*_d value}
   V^{*}_{d} = 0
 \end{equation}
 At the linearization point, the equation of motion for elevation,
@@ -118,7 +123,7 @@ At the linearization point, the equation of motion for elevation,
 L_{3}*V^{*}_{s}$ therefore:
 
 \begin{equation}
-\label{eq:V^*_s value}
+  \label{eq:V^*_s value}
   V^{*}_{s} = -L_{2} / L_{3}
 \end{equation}
 While the equation of motion for travel (\todo{ADD EQUATION
@@ -127,7 +132,7 @@ The following transformation is performed to simplify the analysis
 \cite[p.14]{assignment}:
 
 \begin{equation}
-\label{eq:transformation}
+  \label{eq:transformation}
   \begin{bmatrix}
     \tilde{p} \\
     \tilde{e} \\
@@ -175,7 +180,7 @@ $\tilde{\lambda}$, \textit{$\dot{p}$, $\dot{e}$,$\dot{\lambda}$}) the
 nonlinear state equations become:
 
 \begin{subequations}
-\label{eq:full state equations}
+  \label{eq:full state equations}
   \begin{align}
     \dot{x}_1 &= x_4 \\
     \dot{x}_2 &= x_5 \\
@@ -191,7 +196,7 @@ Jacobians of h with respect to the state and the input and then
 plugging in the equilibrium values.
 
 \begin{equation}
-\label{eq:Linearized Jacobians}
+  \label{eq:Linearized Jacobians}
   \frac{\partial h}{\partial x} = A =
   \begin{bmatrix}
     0 & 0 & 0 & 1 & 0 & 0 \\
@@ -221,7 +226,7 @@ The linearized equations of motion can therefore be written in the
 following form:
 
 \begin{subequations}
-\label{eq:linearized EoM}
+  \label{eq:linearized EoM}
   \begin{align}
     \ddot{\tilde{p}} &= K_1\tilde{V}_d \qquad K_1 = \frac{L_1}{J_p} \label{eq:linearized pitch EoM}\\
     \ddot{\tilde{e}} &= K_2\tilde{V}_s \qquad K_2 = \frac{L_3}{J_e} \label{eq:linearized elevation EoM}\\
