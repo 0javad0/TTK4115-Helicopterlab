@@ -6,27 +6,36 @@
 \section{Part 1 - Mathematical modeling}
 \subsection{Problem 1}
 
-The helicopter model in \cref{fig:helicopter_model} is used as a
-starting point for deriving the equations of motion.
+We use the helicopter model shown in \cref{fig:helicopter_model_forces} and \cref{fig:helicopter_model_masses} as our starting point for deriving the equations of motion.
 
 \begin{figure}[hbp]
-  \caption{the helicopter model figure 7 from the assignment
-    \cite[p.12]{assignment} with relevant distances drawn in.}
+  \caption{the helicopter model figure 7 from the assignment depicting forces and joint axes
+    \cite[p.12]{assignment}.}
 
-  \label{fig:helicopter_model}
-  \includegraphics[width=\textwidth]{images/helicopter_model}
+  \label{fig:helicopter_model_forces}
+  \includegraphics[width=\textwidth]{images/helicopter_model_forces}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{the helicopter model figure 8 from the assignment depicting masses and distances between the joint axes and the point masses
+    \cite[p.13]{assignment}.}
+
+  \label{fig:helicopter_model_masses}
+  \includegraphics[width=\textwidth]{images/helicopter_model_masses}
 \end{figure}
 
 The equation of motion for the pitch is found through the momentum
 around the pitch axis in the clockwise direction as shown in
-\cref{fig:helicopter_model}. It becomes:
+\cref{fig:helicopter_model_forces}. It becomes:
 
 \begin{align*}
   J_p\ddot{p} &= l_p(F_{g,b} - F_b - F_{g,f} + F_f) \\
               &= l_p(m_pg - mp_g + K_fV_f - V_b) \\
               &= l_pK_f(V_f-V_b)
 \end{align*}
-Since $V_d = V_f-V_b$, this can be simplified to:
+
+Where the lengths including $l_p$ is shown in \cref{fig:helicopter_model_masses}. Since $V_d = V_f-V_b$, we can write this as:
+
 \begin{equation}
 \label{eq:pitch EoM}
   J_p\ddot{p} = l_pK_fVd
@@ -35,18 +44,18 @@ Therefore $L_1 = l_pK_f$.
 
 The equation of motion for the elevation angle is found similarly
 through the momentum in the counter-clockwise direction around the
-elevation axis.
+elevation axis, again as shown in \cref{fig:helicopter_model_forces}.
 
 \begin{align*}
-  J_e\ddot{e} &= arm_cF_{g,c} - arm_h(F_{g,f}+F_{g_b} - K_fcos(p)(V_f + V_b))
+  J_e\ddot{e} &= arm_cF_{g,c} - arm_h(F_{g,f}+F_{g,b} - K_fcos(p)(V_f + V_b))
 \end{align*}
 where $arm_c$ is the moment arm between the counterweight point mass
 and the elevation axis, and $arm_h$ is the moment arm between any of
 the two motor point masses and the elevation axis. As shown in
 \cref{fig:elevation_model}, $arm_c = l_ccos(e)$, and $arm_h =
-l_hcos(e)$. \todo{Husk at figuren må være som jeg (Daniel) har i
-  notatene her, da er det 100 prosent tydelig hva $arm_c$ og $arm_h$
-  blir. Kan godt gjøre det enda litt mer detaljert.} $V_s = V_f + V_b$ can be immediately substituted in and the equation simplified:
+l_hcos(e)$. As shown in figure cite, the factor of $cos(p)$ is due to the fact that
+
+We can immediately substitute $V_s = V_f + V_b$, and simplify:
 
 \begin{align*}
   J_e\ddot{e} &= l_ccos(e)m_cg - l_hcos(e)(2m_pg - K_fcos(p)V_s) \\
@@ -64,9 +73,9 @@ factor of the $V_s$ term as negligible, and set it to 1. \todo{Forklar
 Note that $L_2 = g(l_cm_c-2l_hm_p)$, and $L_3 = l_hK_f$.
 
 \begin{figure}[H]
-  \caption{the elevation model}
+  \caption{moment arms around the elevation axis.}
   \label{fig:elevation_model}
-  \includegraphics[width=0.5\textwidth]{images/elevation_model}
+  \includegraphics[width=1\textwidth]{images/elevation_model}
 \end{figure}
 
 Finally, the equation of motion for the travel angle is found through

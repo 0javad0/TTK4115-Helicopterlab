@@ -35,12 +35,9 @@ the system, and see whether it has full rank or not:
 which has full rank: $rank(\boldsymbol{\mathcal{C}}) = 3$, and is thus
 controllable.
 
-Second, we are to implement a LQR controller with reference
-feed-forward. Our $\boldsymbol{P}$ is defined such that as time goes
-to infinity, our states $\tilde{p}$ and $\tilde{\dot{e}}$ tend to
-their reference values $\tilde{p}_c$ and $\tilde{\dot{e}}_c$. This
-happens when $\dot{\boldsymbol{x}} = 0$, as the system reaches a
-stable equilibrium around the reference values:
+Second, we are to implement a LQR controller with reference feed-forward. Our $\boldsymbol{P}$ is defined such that as time goes to infinity, our states $\tilde{p}$ and $\dot{\tilde{e}}$ tend to their reference values $\tilde{p}_c$ and $\dot{\tilde{e}}_c$. This happens when
+$\dot{\boldsymbol{x}} = 0$, as the system reaches a stable equilibrium
+around the reference values:
 
 \begin{align*}
   \dot{\boldsymbol{x}} &= \boldsymbol{Ax} + \boldsymbol{Bu} \\
@@ -64,20 +61,28 @@ We see that our output $\boldsymbol{y_\infty}$ is equal to our reference $\bolds
 \end{equation}
 Therefore, we now have
 \begin{align*}
-  \lim_{t\to\infty}\boldsymbol{y}(t) = \boldsymbol{y_\infty} =
-  \begin{bmatrix}
-    \tilde{p} \\
-    \tilde{\dot{e}}
-  \end{bmatrix}
-  =
-  \begin{bmatrix}
-    \tilde{p}_c \\
-    \tilde{\dot{e}}_c
-  \end{bmatrix}
-  = \boldsymbol{r},
+\lim_{t\to\infty}\boldsymbol{y}(t) = \boldsymbol{y_\infty} =
+\begin{bmatrix}
+\tilde{p} \\
+\dot{\tilde{e}}
+\end{bmatrix}
+= 
+\begin{bmatrix}
+\tilde{p}_c \\
+\dot{\tilde{e}}_c
+\end{bmatrix}
+= \boldsymbol{r},
 \end{align*}
 which is what we wanted.
 \subsection{Problem 3}
+Without integral effect, the system could track pitch without much of a problem. But the elevation rate had a noticeable deviation in the ranges of elevation not close to our linearization point $\dot{\tilde{e}} = 0$. %: Dette er egentlig unødvendig og studass var usikker på det: This is because in reality, our system's linearized $\boldsymbol{A}$ and $\boldsymbol{B}$ matrices change as elevation differs from its linearization point.
+\\
+\\
+With integral effect, this deviation in elevation rate is asymptotically removed. This means that with a zero Y output from our joystick, we see a corresponding zero elevation rate, and the elevation angle stays asymptotically constant also for angles not close to its linearization point.
+
+%Spør om i hvilken grad vi må beskrive at P er det den er.
+%Spør om forklaringen over er så god som den kan være.
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "report_main"
