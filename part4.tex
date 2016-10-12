@@ -1,24 +1,26 @@
-
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "report_main"
 %%% End:
 
-By describing the system in \cref{eq:linearized EoM} in state space form, with a state $x = (\tilde{p}, \tilde{\dot{p}}, \tilde{e}, \tilde{\dot{e}}, \tilde{\lambda}, \tilde{\dot{\lambda}})$, an input $u = (\tilde{V}_s, \tilde{V}_d)$ and an output $y = (\tilde{p}, \tilde{e}, \tilde{\lambda})$, the following matrices are found:
-
 \section{Part 4 -- State estimation}
 This section consists of the development of an observer to estimate the
 nonmeasured angular velocities.
+%
 \subsection{Problem 1}
-By describing the system in \cref{eq:linearized EoM} in the following state-space form
+By describing the system in \cref{eq:linearized EoM} in the following
+state-space form
+%
 \begin{align}
   \begin{split}
     \dot{\bm{x}} &= \bm{Ax} + \bm{Bu} \\
     \bm{y} &= \bm{Cx}
   \end{split}
 \end{align}
+%
 where  $\bm{A}$, $\bm{B}$ and $\bm{C}$ are matrices. The state -,
 input - and output vector are given by
+%
 \begin{equation}
   \label{eq:state_space_vectors}
   \bm{x} =
@@ -42,8 +44,9 @@ input - and output vector are given by
     \tilde{\lambda}\\
   \end{bmatrix}
 \end{equation}
-
+%
 This gives the following $\bm{A}$, $\bm{B}$ and $\bm{C}$ matrices
+%
 \begin{equation}
   \label{eq:state_space_A_B_C}
   \bm{A} =
@@ -71,7 +74,9 @@ This gives the following $\bm{A}$, $\bm{B}$ and $\bm{C}$ matrices
     0 & 0 & 0 & 0 & 1 & 0 \\
   \end{bmatrix}
 \end{equation}
+%
 Where $K_1$, $K_2$ and $K_3$ are given by \cref{eq:linearized EoM}.
+%
 \subsection{Problem 2}
 
 \subsection{Problem 3}
