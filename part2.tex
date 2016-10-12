@@ -5,20 +5,20 @@
 
 \section{Part 2 -- Monovariable control}
 \subsection{Problem 1}
-We are given the controller shown in \cref{eq:pd_controller}.
+The following controller form is given in the lab report:
 \begin{equation}
   \label{eq:pd_controller}
   \tilde{V_d} = K_{pp}(\tilde{p_c} - \tilde{p}) - K_{pd} \dot{\tilde{p}}
 \end {equation}
-We take this controller and substitute it in the equation for pitch
-angle (\cref{eq:pitch}).
+Substituting in the equation for pitch
+angle (\cref{eq:pitch}) gives the following.
 \begin{equation}
   \label{eq:pitch_with_pd}
   \ddot{\tilde{p}} = K_1 K_{pp}(\tilde{p_c} - \tilde{p}) - K_1 K_{pd}
   \dot{\tilde{p}}
 \end{equation}
-Now we Laplace transform \cref{eq:pitch_with_pd} to find the transfer
-function $\frac{\tilde{p}(s)}{\tilde{p_c}(s)}$.
+To find the transfer
+function, $\frac{\tilde{p}(s)}{\tilde{p_c}(s)}$, the Laplace transform is taken.
 \begin{align*}
   \ddot{\tilde{p}} + K_1 K_{pd}\dot{\tilde{p}}
   + K_1K_{pp}\tilde{p} &= K_1 K_{pp}\tilde{p_c} \\
@@ -26,22 +26,22 @@ function $\frac{\tilde{p}(s)}{\tilde{p_c}(s)}$.
   s^2\tilde{p}(s) + sK_1K_{pd}\tilde{p}(s)
   + K_1K_{pp}\tilde{p}(s) &= K_1K_{pp}\tilde{p_c}(s)
 \end{align*}
-Which gives us our transfer function
+Which gives the transfer function
 \begin{equation}
   \label{eq:trans_func}
   \frac{\tilde{p}(s)}{\tilde{p_c}(s)} = \frac{K_1K_{pp}}{s^2+K_1K_{pd}s+K_1K_{pp}}
 \end{equation}
 
 The linearized pitch dynamics can be regarded as a second-order linear
-system, which means that if we place \cref{eq:trans_func} on the form
-shown in \cref{eq:sol_system} we can determine $K_{pp}$ and $K_{pd}$
+system, which means that by putting \cref{eq:trans_func} in the form
+shown in \cref{eq:sol_system}, $K_{pp}$ and $K_{pd}$ can be determine
 from $\omega$ and $\zeta$.
 \begin{equation}
   \label{eq:sol_system}
   h(s) = \frac{\omega^2}{s^2+2\zeta\omega^2s+\omega^2}
 \end{equation}
 
-This gives us the following relations
+This gives the following relations:
 \begin{align}
   \label{eq:omega}
   \omega &= \sqrt{K_ 1K_ {pp}} \\
@@ -50,16 +50,14 @@ This gives us the following relations
   \zeta = \frac{K_ 1K_ {pd}}{2\omega^2} &= \frac{K_{pd}}{2K_{pp}}
 \end{align}
 
-We know that for a critically damped system $\zeta = 1$, which gives
-us
+For a critically damped system $\zeta = 1$, which gives the following relationship
 
 \begin{equation}
   \label{eq:K_pd}
   K_{pd} = 2K_{pp}
 \end{equation}
 
-We chose a $K_{pp} = 3$ and then from the relation in \cref{eq:K_pd}
-we get $K_{pd} = 6$. With these values the response of the pitch angle
+Beginning with a $K_{pp} = 3$, and then from the relation in \cref{eq:K_pd} a $K_{pd} = 6$, the response of the pitch angle
 to the input was slower than desired. Therefore, $K_{pp}$ was
 increased to $K_{pp} = 12.5$ and $K_{pd}$ was lowered to underdamp the
 system, until it  was sufficiently responsive at $K_{pd} = 0.7K_{pp} =
@@ -85,7 +83,7 @@ helicopter than with just feed forward joystick control.
 
 
 \subsection{Problem 2}
-By plugging the P controller for travel:
+By plugging the P controller for travel
 \begin{equation}
 \label{travel P controller}
 \tilde{p} = K_{rp}(\dot{\tilde{\lambda}}_c - \dot{\tilde{\lambda}})
