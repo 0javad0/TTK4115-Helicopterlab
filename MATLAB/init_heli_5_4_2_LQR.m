@@ -57,22 +57,11 @@ K=lqr(A,B,Q,R);
 P = inv(C*inv(B*K-A)*B);
 
 
-% %Problem 5.3.3
-%{
-A = [0 1 0 0 0; 0 0 0 0 0 ; 0 0 0 0 0 ; 1 0 0 0 0; 0 0 1 0 0]
-B=[0 0; 0 K_1; K_2 0; 0 0; 0 0];
-Q=diag([15 0.1 25 1 1])
-R=[1 0; 0 1];
-K=lqr(A,B,Q,R)
-C=[1 0 0 0 0; 0 0 1 0 0];
-P = [0 K(1,3); K(2,1) 0]
-%}
-
 % Problem 5.4.2
 A_e = [ 0 1 0 0 0 0; 0 0 0 0 0 0; 0 0 0 1 0 0; 0 0 0 0 0 0; 0 0 0 0 0 1; K_3 0 0 0 0 0];
 B_e = [0 0; 0  K_1; 0 0; K_2 0; 0 0;  0 0];
 C_e = [ 1 0 0 0 0 0; 0 0 1 0 0 0; 0 0 0 0 1 0];
-ctrl_poles = eig(A-B*K);
+ctrl_poles = eig(A-B*K)
 
 %Largest radius of the controller poles:
 max_rad_ctrl = norm(max(ctrl_poles))
