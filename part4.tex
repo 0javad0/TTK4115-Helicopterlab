@@ -2,7 +2,6 @@
 %%% mode: latex
 %%% TeX-master: "report_main"
 %%% End:
-
 \section{Part 4 -- State estimation}
 This section consists of the development of an observer to estimate the
 nonmeasured angular velocities.
@@ -78,24 +77,60 @@ This gives the following $\bm{A}$, $\bm{B}$ and $\bm{C}$ matrices
 Where $K_1$, $K_2$ and $K_3$ are given by \cref{eq:linearized EoM}.
 %
 \subsection{Problem 2}
-
-\subsection{Problem 3}
-The observer matrix can be used. Because $\bm{C}$ is 3x6, the observer matrix becomes:
+The observer matrix can be used. It is:
 \begin{align*}
 	\bm{\mathcal{O}} = 
 	\begin{bmatrix}
 		\bm{C} \\
-		\bm{CA} \\
-	\end{bmatrix},
+		\bm{CA}
+	\end{bmatrix} \\
+  &=\begin{bmatrix}
+    1 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 1
+	\end{bmatrix}
+\end{align*}	
+It has full rank, and the system is therefore fully observable.
+
+The observer gain matrix $\bm{L}$ is to be set in such a way that the poles of the observer is faster than the system, in order to drive the error to zero.
+	\begin{figure}[H]
+		\caption{ illustrating how to place poles during state, or estimated state feedback, on a semi-circle with the same radius, within the region shown.}
+		\label{fig:pole_placement}
+		\begin{center}
+		\includegraphics[width=0.5\textwidth]{images/pole_placement}
+		\end{center}
+	\end{figure}
+\todo[inline]{Finn navnene på theta og sigma i forhold til regtek}The poles of the observer must be placed as in \cref{fig:pole_placement}. The real value of our poles must be larger than $\sigma$, which for the observer is the value of the largest real value of the controlled systems poles. This way, all of the linear observers poles are faster than the controlled system. $\theta$ is the biggest angle of our observer poles. If this is too large, we will get too much of an underdamped system and too much of an overshoot. However, if the radius is too large, undesired high frequency noise from the measurements becomes amplified to unwanted levels.
+
+We chose $\theta = 15$, and $r$ as 50 times the maximum length of the controlled systems poles.
+
+The observer itself has the state space formulation:
+
+\begin{equation*}
+	\dot{\hat{\bm{x}}} = \bm{A}\hat{\bm{x}}+\bm{B}\bm{u} + \bm{L}(\bm{y} - \bm{C}\hat{\bm{x}})
+\end{equation*}
+
+\begin{align*}
+	\bm{\dot{e}} =
 \end{align*}
-which is 6x6. For only $\tilde{e}$ and $\tilde{\lambda}$ measured, the observer matrix becomes:
+\subsection{Problem 3}
+For only $\tilde{e}$ and $\tilde{\lambda}$ measured $\bm{C}$ becomes:
+	$\begin{bmatrix}
+    0 & 0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0
+	\end{bmatrix}$.
+The observer matrix, this time found through $obsv(\bm{A},\bm{C})$ is:
 \begin{equation}
 	\bm{\mathcal{O}} =
   \begin{bmatrix}
-    1 & 0 & 0 & 0 & 0 & 0 \\
-    0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 & 0 \\
     0 & 0 & 0 & 0 & 1 & 0 \\
-		etc
+    0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 1
 	\end{bmatrix}
 \end{equation}
-		
