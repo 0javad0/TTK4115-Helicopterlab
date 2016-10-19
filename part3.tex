@@ -32,10 +32,54 @@ the system, and see whether it has full rank or not:
     K_2 & 0 & 0 & 0 \\
   \end{bmatrix}
 \end{equation}
-which has full rank: $rank(\boldsymbol{\mathcal{C}}) = 3$, and is thus
+which has full rank: $rank(\bm{\mathcal{C}}) = 3$, and is thus
 controllable.
 
-Second, we are to implement a LQR controller with reference feed-forward. Our $\boldsymbol{P}$ is defined such that as time goes to infinity, our states $\tilde{p}$ and $\dot{\tilde{e}}$ tend to their reference values $\tilde{p}_c$ and $\dot{\tilde{e}}_c$. This happens when
+Second, we are to implement a LQR controller with reference feed-forward, $u = \bm{Pr}-\bm{Kx}$. K is derived from the Matlab lqr function, which requires the A and B matrices, in addition to weighting matrices Q and R. When finding appropriate Q and R matrices, Byrson's rule guided the first iteration. The rule states:
+
+\begin{equation}
+Q_{ii} = \frac{1}{\text{maximum acceptable value of }x_i^2}
+\end{equation}
+\begin{equation}
+R_{jj} = \frac{1}{\text{maximum acceptable value of }u_j^2}
+\end{equation}
+ where $x_i$ represents the $i^{th}$ state and $u_j$ represents the $j^{th}$ input. All other entries to Q and R are 0. This resulted in:
+\begin{equation}
+Q = 
+	\begin{bmatrix}
+    1/(\pi/8)^2 & 0          & 0 \\
+    0 &          1/(\pi/2)^2 & 0 \\
+    0 &          0          & 1/(\pi/8)^2 \\
+  \end{bmatrix}
+	\qquad
+R =
+	\begin{bmatrix}
+    1 & 0 \\
+    0 & 1 \\
+  \end{bmatrix}
+\end{equation}
+We chose these initial values to have a small range of motion in pitch, a large max speed in pitch to better control the pitch and a relatively slow maximum speed in elevation. Furthermore, both inputs max value is 1.
+\todo{Spør studass om det er korrekt måten å beskrive valg av Q og R}
+
+After tuning, the following Q and R matrices seemed to perform with the quickest response without large overshoots:
+\begin{equation}
+Q = 
+	\begin{bmatrix}
+    15 & 0   & 0 \\
+    0  & 0.1 & 0 \\
+    0  & 0   & 25 \\
+  \end{bmatrix}
+	\qquad
+R =
+	\begin{bmatrix}
+    1 & 0 \\
+    0 & 1 \\
+  \end{bmatrix}
+\end{equation}
+
+
+
+$\boldsymbol{P}$ is defined such that as time goes to infinity, our states $\tilde{p}$ and $\dot{\tilde{e}}$ tend to their reference values $\tilde{p}_c$ and $\dot{\tilde{e}}_c$. This happens when
 $\dot{\boldsymbol{x}} = 0$, as the system reaches a stable equilibrium
 around the reference values:
 

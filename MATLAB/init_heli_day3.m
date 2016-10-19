@@ -79,26 +79,13 @@ K = lqr(A,B,Q,R);
 ctrl_poles = eig(A-B*K);
 
 %Largest radius of the controller poles:
-max_rad_ctrl = norm(max(ctrl_poles))
-observer_poles = [];
+max_rad_ctrl = norm(max(ctrl_poles));
+poles = [];
 
-angleStep = 10;
-r = -max_rad_ctrl*6;
-observer_poles = zeros(1, 6);
-x = zeros(1, 6);
-y = zeros(1, 6);
-for i = 1:3
-    height = r*sin(deg2rad(angleStep*i));
-    width = sqrt(r^2 - height^2);
-    observer_poles(i) = complex(-width, height);
-    observer_poles(i+3) = complex(-width, -height);
-    x(i) = -width;
-    x(i+3) = -width;
-    y(i) = height;
-    y(i+3) = -height;
-    %poles(i) = -max_rad_ctrl*10 - i;
+for i = 1:6
+    %height = max_rad_ctrl*10*sin(deg2rad(5));
+    %width = sqrt(max_rad_ctrl^2 - height^2);
+    poles(i) = -max_rad_ctrl*10 - i;
 end
-plot(x, y, '*')
-xlim([-10 10])
-L = place(A', C', observer_poles)';
 
+L = place(A', C', poles)';
