@@ -11,10 +11,10 @@
 % plot(real(ctrl_poles), imag(ctrl_poles), 'x')
 close all
 %Temp
-x_states.time = [1 2 3 4 5 6]
-x_states.signals.values = ones(6, 6);
-xhat_states.time = [1 2 3 4 5 6]
-xhat_states.signals.values = ones(6, 6) *2;
+% x_states.time = [1 2 3 4 5 6]
+% x_states.signals.values = ones(6, 6);
+% xhat_states.time = [1 2 3 4 5 6]
+% xhat_states.signals.values = ones(6, 6) *2;
 %Temp
 
 dateAndTime = strrep(datestr(datetime('now')), ':', '-')
