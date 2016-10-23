@@ -77,22 +77,29 @@ This gives the following $\bm{A}$, $\bm{B}$ and $\bm{C}$ matrices
 Where $K_1$, $K_2$ and $K_3$ are given by \cref{eq:linearized EoM}.
 %
 \subsection{Problem 2}
-The observer matrix can be used. It is:
-\begin{align*}
+The observer matrix can be used. For a 6 state system, it is define by:
+\begin{equation}
 	\bm{\mathcal{O}} = 
 	\begin{bmatrix}
 		\bm{C} \\
-		\bm{CA}
+		\bm{CA} \\
+		\bm{C*A^2} \\
+		\bm{C*A^3} \\
+		\bm{C*A^4} \\
+		\bm{C*A^5} \\
 	\end{bmatrix} \\
-  &=\begin{bmatrix}
-    1 & 0 & 0 & 0 & 0 & 0 \\
-    0 & 0 & 1 & 0 & 0 & 0 \\
-    0 & 0 & 0 & 0 & 1 & 0 \\
-    0 & 1 & 0 & 0 & 0 & 0 \\
-    0 & 0 & 0 & 1 & 0 & 0 \\
-    0 & 0 & 0 & 0 & 0 & 1
-	\end{bmatrix}
-\end{align*}	
+\end{equation}
+This can be calculated using MATLAB's $obsv(\bm{A},\bm{C})$ function. The resulting 18x6 matrix has rank 6, thereby full rank.
+%
+  %&=\begin{bmatrix}
+    %1 & 0 & 0 & 0 & 0 & 0 \\
+    %0 & 0 & 1 & 0 & 0 & 0 \\
+    %0 & 0 & 0 & 0 & 1 & 0 \\
+    %0 & 1 & 0 & 0 & 0 & 0 \\
+    %0 & 0 & 0 & 1 & 0 & 0 \\
+    %0 & 0 & 0 & 0 & 0 & 1
+	%\end{bmatrix}
+%\end{align*}	
 It has full rank, and the system is therefore fully observable.
 
 The observer gain matrix $\bm{L}$ is to be set in such a way that the poles of the observer is faster than the system, in order to drive the error to zero.
@@ -117,20 +124,27 @@ The observer itself has the state space formulation:
 	\bm{\dot{e}} =
 \end{align*}
 \subsection{Problem 3}
-For only $\tilde{e}$ and $\tilde{\lambda}$ measured $\bm{C}$ becomes:
+When only $\tilde{e}$ and $\tilde{\lambda}$ are measured, the output matrix $\bm{C}$ becomes:
 	$\begin{bmatrix}
     0 & 0 & 1 & 0 & 0 & 0 \\
     0 & 0 & 0 & 0 & 1 & 0
 	\end{bmatrix}$.
-The observer matrix, this time found through $obsv(\bm{A},\bm{C})$ is:
-\begin{equation}
-	\bm{\mathcal{O}} =
-  \begin{bmatrix}
-    0 & 0 & 1 & 0 & 0 & 0 \\
-    0 & 0 & 0 & 0 & 1 & 0 \\
-    0 & 0 & 0 & 0 & 0 & 0 \\
-    0 & 1 & 0 & 0 & 0 & 0 \\
-    0 & 0 & 0 & 1 & 0 & 0 \\
-    0 & 0 & 0 & 0 & 0 & 1
-	\end{bmatrix}
-\end{equation}
+The observer matrix, found through $obsv(\bm{A},\bm{C})$ is a 12x6 matrix with rank 6. Therefore, it is observable.
+
+However, when only $\tilde{p}$ and $\tilde{e}$ are measured, the output matrix $\bm{C}$ becomes:
+	$\begin{bmatrix}
+    1 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 & 0
+	\end{bmatrix}$.
+The observer matrix, found through $obsv(\bm{A},\bm{C})$ is a 12x6 matrix with rank 4. Therefore, it is not observable.
+%\begin{equation}
+	%\bm{\mathcal{O}} =
+  %\begin{bmatrix}
+    %0 & 0 & 1 & 0 & 0 & 0 \\
+    %0 & 0 & 0 & 0 & 1 & 0 \\
+    %0 & 0 & 0 & 0 & 0 & 0 \\
+    %0 & 1 & 0 & 0 & 0 & 0 \\
+    %0 & 0 & 0 & 1 & 0 & 0 \\
+    %0 & 0 & 0 & 0 & 0 & 1
+	%\end{bmatrix}
+%\end{equation}

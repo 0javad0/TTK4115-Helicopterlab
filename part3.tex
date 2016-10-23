@@ -119,6 +119,47 @@ Therefore, we now have
 \end{align*}
 which is what we wanted.
 \subsection{Problem 3}
+With integral effect, the new state space matrices become:
+\begin{equation}
+  \boldsymbol{A} = \begin{bmatrix}
+    0 & 1 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 0\\
+		1 & 0 & 0 & 0 & 0\\
+		0 & 0 & 1 & 0 & 0\\
+  \end{bmatrix}, \hspace{0.5cm}
+  \boldsymbol{B} = \begin{bmatrix}
+    0 & 0 \\
+    0 & K_1 \\
+    K_2 & 0 \\
+		0 & 0 \\
+		0 & 0 \\
+  \end{bmatrix}, \hspace{0.5cm}
+	\boldsymbol{C} = \begin{bmatrix}
+    1 & 0 & 0 & 0 & 0\\
+		0 & 0 & 1 & 0 & 0\\
+  \end{bmatrix}
+\end{equation}
+
+The matrices used to calculate the controllers gains, Q and R, also needed to be updated:
+
+\begin{equation}
+Q = 
+	\begin{bmatrix}
+    15 & 0   & 0  & 0 & 0 \\
+    0  & 0.1 & 0  & 0 & 0 \\
+    0  & 0   & 25 & 0 & 0 \\
+		0  & 0   & 0  & 1 & 0 \\
+		0  & 0   & 0  & 0 & 1 \\
+  \end{bmatrix}
+	\qquad
+R =
+	\begin{bmatrix}
+    1 & 0 \\
+    0 & 1 \\
+  \end{bmatrix}
+\end{equation}
+
 Without integral effect, the system could track pitch without much of a problem. But the elevation rate had a noticeable deviation in the ranges of elevation not close to our linearization point $\dot{\tilde{e}} = 0$. %: Dette er egentlig unødvendig og studass var usikker på det: This is because in reality, our system's linearized $\boldsymbol{A}$ and $\boldsymbol{B}$ matrices change as elevation differs from its linearization point.
 \\
 \\
