@@ -5,6 +5,7 @@
 
 \section{Part 1 - Mathematical modeling}
 \subsection{Problem 1}
+\label{subsec:problem 1}
 %
 We use the helicopter model shown in \cref{fig:helicopter_model_forces} and
 \cref{fig:helicopter_model_masses} as our starting point for deriving
@@ -25,7 +26,10 @@ the equations of motion.
   \includegraphics[width=\textwidth]{images/helicopter_model_masses}
 \end{figure}
 %
-Only forces perpendicular to a moment arm, with the moment arm again perpendicular to the axis of rotation in question produces moment, or torque. The equation of motion for the pitch is found through the momentum around the pitch axis in the clockwise direction as shown in 
+Only forces perpendicular to a moment arm, with the moment arm again
+perpendicular to the axis of rotation in question produces moment, or
+torque. The equation of motion for the pitch is found through the
+momentum around the pitch axis in the clockwise direction as shown in
 \cref{fig:helicopter_model_forces}. It becomes:
 %
 \begin{align*}
@@ -55,14 +59,16 @@ elevation axis, again as shown in
 %
 where $arm_c$ is the moment arm between the counterweight point mass
 and the elevation axis, and $arm_h$ is the moment arm between any of
-the two motor point masses and the elevation axis. $F_{f,p} = F_{f,perpendicular}$ is the perpendicular component of $F_f$, and $F_{b,p} = F_{b,perpendicular}$ is the perpendicular component of $F_b$. As shown in
-\cref{fig:elevation_model}, $arm_c = l_ccos(e)$, and $arm_h =
-l_hcos(e)$, and the moment arm for the motor forces is indeed $l_h$.
+the two motor point masses and the elevation axis. $F_{f,p} =
+F_{f,perpendicular}$ is the perpendicular component of $F_f$, and
+$F_{b,p} = F_{b,perpendicular}$ is the perpendicular component of
+$F_b$. As shown in \cref{fig:elevation_model}, $arm_c = l_ccos(e)$,
+and $arm_h = l_hcos(e)$, and the moment arm for the motor forces is indeed $l_h$.
 %
 \begin{figure}[H]
-  \caption{moment arms around the elevation axis, with relevant forces. Also, the positive
-    direction of momentum is displayed as counter-clockwise around the
-    e-axis.}
+  \caption{moment arms around the elevation axis, with relevant
+    forces. Also, the positive direction of momentum is displayed as
+    counter-clockwise around the e-axis.}
   \label{fig:elevation_model}
   \includegraphics[width=1\textwidth]{images/elevation_model}
 \end{figure}
@@ -90,11 +96,12 @@ We substitute in $V_s = V_f + V_b$ and the two moment arms:
 \end{align*}
 The eqation of motion for the elevation angle then has the final form:
 \begin{equation}
-	J_e\ddot{e} = g(l_cm_c - 2l_hm_p)cos(e) + l_hK_fV_scos(p)
+  \label{eq:elevation EoM}
+  J_e\ddot{e} = g(l_cm_c - 2l_hm_p)cos(e) + l_hK_fV_scos(p)
 \end{equation}
 %
 We see that $L_2 = g(l_cm_c-2l_hm_p)$, and $L_3 = l_hK_f$.
-\\ \\ 
+\\ \\
 Finally, the equation of motion for the travel angle is found through
 the momentum around the travel axis in the  clockwise direction, as
 shown in \cref{fig:helicopter_model_forces}. As seen in
@@ -109,19 +116,18 @@ length $arm_h = l_hcos(e)$:
                          &= l_hcos(e)(K_fsin(p)(V_f + V_b))
 \end{align*}
 %
-Again substituting $V_s = V_f + V_b$, and we get the final equation of motion for the travel angle:
+Again substituting $V_s = V_f + V_b$, and we get the final equation of
+motion for the travel angle:
 %
 \begin{equation}
-  \label{eq:lambda EoM}
+  \label{eq:travel EoM}
   J_\lambda\ddot{\lambda} = l_hK_fV_scos(e)sin(p)
 \end{equation}
 %
 We see that $L_4 = l_hK_f$.
 
-The equations \cref{eq:pitch EoM}, \cref{eq:elevation EoM}, and
-\cref{eq:lambda EoM} correspond to equations (2a), (2b), and (2c)
-respectively from the assignment \cite[p.13]{assignment}, and it has
-been shown \todo{QED?}.
+\Crefrange{eq:pitch EoM}{eq:travel EoM} respectively correspond to equations
+(2a) to (2c) from the assignment \cite[p.13]{assignment}.
 %
 \subsection{Problem 2}
 To linearize the system about the point with all state variables equal
@@ -146,8 +152,8 @@ L_{3}*V^{*}_{s}$ therefore:
   V^{*}_{s} = -L_{2} / L_{3}
 \end{equation}
 %
-While the equation of motion for travel (\todo{ADD EQUATION
-  REFERENCE}) at the linearization point simply reduces to 0 = 0.
+While the equation of motion for travel, \cref{eq:travel EoM}, at the
+linearization point simply reduces to 0 = 0.
 The following transformation is performed to simplify the analysis
 \cite[p.14]{assignment}:
 %
@@ -220,7 +226,7 @@ nonlinear state equations become:
 If the above system is expressed as $\dot{x} = h(x, u)$, where x is
 the state and u is the input, the system is linearized by finding the
 Jacobians of h with respect to the state and the input and then
-plugging in the equilibrium values.
+inserting the equilibrium values.
 %
 \begin{equation}
   \label{eq:Linearized Jacobians}
@@ -244,9 +250,9 @@ plugging in the equilibrium values.
     0 & 0
   \end{bmatrix}
 \end{equation}
-where $L_1, L_2, L_3$ and $L_4$ were calculated in Section 1.1 and
-$J_p, J_e$ and $J_\lambda$ were given in the assignment description
-\cite[p.14]{assignment}.
+where $L_1, L_2, L_3$ and $L_4$ were calculated in
+\cref{subsec:problem 1} and $J_p, J_e$ and $J_\lambda$ were given in
+the assignment description \cite[p.14]{assignment}.
 %
 The linearized equations of motion can therefore be written in the
 following form:
@@ -271,8 +277,7 @@ following form:
 The helicopter is difficult to control using only feed-forward. The
 physical behaviour of the helicopter differs from the (2a) - (2c)
 \cite[p.13]{assignment} model because it does not take into
-consideration air resistance drag, ground effects nor the changes in
-length of the moment arm around the elevation axis.
+consideration drag, ground effects, etc.
 
 In \cref{eq:linearized EoM} the model is linearized around a point with
 all angles equal to zero, where elevation is defined as zero when the
