@@ -66,7 +66,8 @@ norm(ctrl_poles)
 max_rad_ctrl = norm(max(ctrl_poles));
 
 angleStep = 4;
-r = -max_rad_ctrl*.5;
+rGain = .5;
+r = -max_rad_ctrl*rGain;
 observer_poles = zeros(1, 6);
 for i = 1:3
     height = r*sin(pi*angleStep*i/180);
