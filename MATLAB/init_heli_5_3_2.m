@@ -12,8 +12,8 @@ clear all
 
 %%%%%%%%%%% Calibration of the encoder and the hardware for the specific
 %%%%%%%%%%% helicopter
-Joystick_gain_x = 1; % Var 1 /// 0.5
-Joystick_gain_y = 1; % Var -1 /// -1
+Joystick_gain_x = 2; % Var 1 /// 0.5
+Joystick_gain_y = 0.1; % Var -1 /// -1
 
 
 %%%%%%%%%%% Physical constants
@@ -41,16 +41,11 @@ K_1 = L_1/J_p;
 K_2 = L_3/J_e;
 K_3 = L_4/J_lambda*(L_2/L_3);
 
-
-K_pp = 12.5;
-K_pd = 0.7*K_pp;
-K_rp = -2;
-
 %Problem 5.3.2
 
 A=[0 1 0; 0 0 0; 0 0 0];
 B=[0 0; 0 K_1; K_2 0];
-Q=diag([15 0.1 25]);
+Q=diag([60 0.01 100]);
 R=[1 0; 0 1];
 C=[1 0 0; 0 0 1];
 K=lqr(A,B,Q,R);

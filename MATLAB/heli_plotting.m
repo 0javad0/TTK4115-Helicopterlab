@@ -17,13 +17,19 @@ close all
 % xhat_states.signals.values = ones(6, 6) *2;
 %Temp
 
-dateAndTime = strrep(datestr(datetime('now')), ':', '-')
-figName = strcat('Estimator\_rGain-', num2str(rGain), '\_angleStep-', num2str(angleStep), '\_', dateAndTime)
+%dateAndTime = strrep(datestr(datetime('now')), ':', '-')
+
+dateAndTime = strcat(datestr(date), '_', strrep(time, ':', '-'))
+if(exist('rGain') && exist('angleStep'))
+    figName = strcat('Estimator_rGain-', num2str(rGain), '_angleStep-', num2str(angleStep), '_', dateAndTime)
+else
+    figName = strcat('Estimator_', dateAndTime)
+end
 
 titles  = {'pitch', 'pitch rate', 'elevation', 'elevation rate','travel', 'travel rate'}
 ylabels = {'pitch (deg)', 'pitch_dot (deg/sec)', 'elevation (deg)', 'elevation_dot (deg/sec)','travel (deg)', 'travel_dot (deg/sec)'}
 h = figure()
-suptitle(figName)
+% suptitle(figName)
 for (i = 1:6)
     subplot(3, 2, i)
     plot(x_states.time, x_states.signals.values(:,i)*(180/pi), 'b')

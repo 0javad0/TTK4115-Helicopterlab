@@ -8,7 +8,7 @@
 % Updated fall 2010, Dominik Breu
 % Updated fall 2013, Mark Haring
 % Updated spring 2015, Mark Haring
-clear all
+%clear all
 
 %%%%%%%%%%% Calibration of the encoder and the hardware for the specific
 %%%%%%%%%%% helicopter
@@ -50,7 +50,7 @@ K_rp = -2;
 
 A=[0 1 0; 0 0 0; 0 0 0];
 B=[0 0; 0 K_1; K_2 0];
-Q=diag([15 0.1 25]);
+Q=diag([60 0.01 100]);
 R=[1 0; 0 1];
 C=[1 0 0; 0 0 1];
 K=lqr(A,B,Q,R);
@@ -67,28 +67,33 @@ ctrl_poles = eig(A-B*K)
 max_rad_ctrl = norm(max(ctrl_poles))
 observer_poles = [];
 
+%{
 angleStep = 5;
-r = -max_rad_ctrl*60;
+rGain = 40;
+r = -max_rad_ctrl*rGain;
 observer_poles = zeros(1, 6);
-x = zeros(1, 6);
-y = zeros(1, 6);
 for i = 1:3
     height = r*sin(pi*angleStep*i/180);
     width = sqrt(r^2 - height^2);
     observer_poles(i) = complex(-width, height);
     observer_poles(i+3) = complex(-width, -height);
-    x(i) = -width;
-    x(i+3) = -width;
-    y(i) = height;
-    y(i+3) = -height;
-    %poles(i) = -max_rad_ctrl*10 - i;
 end
-plot(x, y, '*')
-xlim([-10 10])
-ylim([-10 10])
+%}
+
+observer_poles = zeros(1, 6);
+for i = 1:6
+    height = 0;
+    width = 20*i
+    observer_poles(i) = complex(-width, height);
+end
+
+figure()
+plot(real(observer_poles), imag(observer_poles), '*')
+xlim([real(min(observer_poles)) 1])
+ylim([min(imag(observer_poles))-1 max(imag(observer_poles))+1])
 xL = xlim;
 yL = ylim;
 line([0 0], yL);
 line(xL, [0 0]);
-L = place(A_e', C_e', observer_poles)';
-
+hold on
+plot(real(ctrl_poles), imag(ctrl_poles), 'x')
