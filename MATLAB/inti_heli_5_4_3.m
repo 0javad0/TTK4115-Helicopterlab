@@ -95,6 +95,7 @@ end
 % observer_poles(6) = complex(-2.25, -0.75);
 
 L = place(A_e', C_e', observer_poles)'
+L = [100 -100; 100 -150; 10 -0.5; 20 -5; -1 15; -20 100];
 
 figure()
 plot(real(observer_poles), imag(observer_poles), '*')
