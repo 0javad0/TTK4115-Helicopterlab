@@ -7,12 +7,11 @@
 \subsection{Problem 1}
 \label{subsec:problem 1}
 %
-We use the helicopter model shown in \cref{fig:helicopter_model_forces} and
-\cref{fig:helicopter_model_masses} as our starting point for deriving
-the equations of motion.
+The helicopter model shown in \cref{fig:helicopter_model_forces} and
+\cref{fig:helicopter_model_masses} is used to derive the equations of motion.
 %
 \begin{figure}[hbp]
-  \caption{the helicopter model figure 7 from the assignment depicting
+  \caption{Helicopter model from the assignment depicting
     forces and joint axes \cite[p.12]{assignment}.}
   \label{fig:helicopter_model_forces}
   \includegraphics[width=\textwidth]{images/helicopter_model_forces}
@@ -27,7 +26,7 @@ the equations of motion.
 \end{figure}
 %
 Only forces perpendicular to a moment arm, with the moment arm again
-perpendicular to the axis of rotation in question produces moment, or
+perpendicular to the axis of rotation in question produce a moment, or
 torque. The equation of motion for the pitch is found through the
 momentum around the pitch axis in the clockwise direction as shown in
 \cref{fig:helicopter_model_forces}. It becomes:
@@ -38,9 +37,8 @@ momentum around the pitch axis in the clockwise direction as shown in
               &= l_pK_f(V_f-V_b)
 \end{align*}
 %
-Where the lengths including $l_p$ is shown in
-\cref{fig:helicopter_model_masses}. Since $V_d = V_f-V_b$, we can
-write this as:
+Where the lengths, including $l_p$, are shown in
+\cref{fig:helicopter_model_masses}. Since $V_d = V_f-V_b$, this can be written as:
 %
 \begin{equation}
   \label{eq:pitch EoM}
@@ -89,18 +87,18 @@ respectively.
               &= arm_cm_cg - arm_h(m_pg + m_pg) + l_hK_fcos(p)(V_f + V_b))
 \end{align*}
 %
-We substitute in $V_s = V_f + V_b$ and the two moment arms:
+Substitute in $V_s = V_f + V_b$ and the two moment arms and the equation becomes:
 %
 \begin{align*}
   J_e\ddot{e} = l_ccos(e)m_cg - l_hcos(e)2m_pg + l_hK_fcos(p)V_s)
 \end{align*}
-The eqation of motion for the elevation angle then has the final form:
+The equation of motion for the elevation angle then has the final form:
 \begin{equation}
   \label{eq:elevation EoM}
   J_e\ddot{e} = g(l_cm_c - 2l_hm_p)cos(e) + l_hK_fV_scos(p)
 \end{equation}
 %
-We see that $L_2 = g(l_cm_c-2l_hm_p)$, and $L_3 = l_hK_f$.
+Therefore $L_2 = g(l_cm_c-2l_hm_p)$, and $L_3 = l_hK_f$.
 \\ \\
 Finally, the equation of motion for the travel angle is found through
 the momentum around the travel axis in the  clockwise direction, as
@@ -116,17 +114,17 @@ length $arm_h = l_hcos(e)$:
                          &= l_hcos(e)(K_fsin(p)(V_f + V_b))
 \end{align*}
 %
-Again substituting $V_s = V_f + V_b$, and we get the final equation of
-motion for the travel angle:
+By substituting $V_s = V_f + V_b$, the final equation of
+motion for the travel angle becomes:
 %
 \begin{equation}
   \label{eq:travel EoM}
   J_\lambda\ddot{\lambda} = l_hK_fV_scos(e)sin(p)
 \end{equation}
 %
-We see that $L_4 = l_hK_f$.
+Therefore $L_4 = l_hK_f$.
 
-\Crefrange{eq:pitch EoM}{eq:travel EoM} respectively correspond to equations
+\Crefrange{eq:pitch EoM}{eq:travel EoM}  correspond respectively to equations
 (2a) to (2c) from the assignment \cite[p.13]{assignment}.
 %
 \subsection{Problem 2}

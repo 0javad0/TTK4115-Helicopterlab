@@ -1,7 +1,16 @@
 \section{Part 3 - Multivariable control}
 \subsection{Problem 1}
-Here, we are to find the systems matrices $\boldsymbol{A}$ and
-$\boldsymbol{B}$. Trivially, they are:
+Given the state variables:
+\begin{equation}
+  \boldsymbol{x} = \begin{bmatrix}
+    \tilde{p} \\
+    \dot{\tilde{p}} \\
+    \dot{\tilde{e}} \\
+  \end{bmatrix}
+\end{equation}
+
+and \cref{eq:linearized EoM}, the system matrices $\boldsymbol{A}$ and
+$\boldsymbol{B}$ are as follows:
 
 \begin{equation}
   \boldsymbol{A} = \begin{bmatrix}
@@ -17,25 +26,24 @@ $\boldsymbol{B}$. Trivially, they are:
 \end{equation}
 
 \subsection{Problem 2}
-First, we are to examine the controllability of the system. We do that
-by finding the controllability matrix $\boldsymbol{\mathcal{C}}$ of
-the system, and see whether it has full rank or not:
+The rank of the controllability matrix, $\boldsymbol{\mathcal{C}}$, determines whether the system is controllable.
+
 
 \begin{equation}
   \boldsymbol{\mathcal{C}} = \begin{bmatrix}
-    \boldsymbol{B} & \boldsymbol{AB}
+    \boldsymbol{B} & \boldsymbol{AB} & \boldsymbol{A^2B} 
   \end{bmatrix}
   =
   \begin{bmatrix}
-    0 & 0 & 0 & K_1 \\
-    0 & K_1 & 0 & 0 \\
-    K_2 & 0 & 0 & 0 \\
+    0 & 0   & 0 & K_1 & 0 & 0\\
+    0 & K_1 & 0 & 0   & 0 & 0\\
+    K_2 & 0 & 0 & 0   & 0 & 0\\
   \end{bmatrix}
 \end{equation}
 which has full rank: $rank(\bm{\mathcal{C}}) = 3$, and is thus
 controllable.
 
-Second, we are to implement a LQR controller with reference
+The system can be controlled by adding an LQR controller with reference
 feed-forward, $u = \bm{Pr}-\bm{Kx}$. K is derived from the Matlab lqr
 function, which requires the A and B matrices, in addition to
 weighting matrices Q and R. When finding appropriate Q and R matrices,
@@ -63,7 +71,7 @@ in: \begin{equation}
     0 & 1 \\
   \end{bmatrix}
 \end{equation}
-We chose these initial values to have a small range of motion in
+These initial values represent the decision to have a small range of motion in
 pitch, a large max speed in pitch to better control the pitch and a
 relatively slow maximum speed in elevation. Furthermore, both inputs
 max value is 1.
@@ -90,7 +98,7 @@ higher value slowed the pitch response. With $q_{3,3} > 100$ the
 system becomes difficult to control.
 \todo[inline]{Explain why the system becomes difficult to control}
 
-$\boldsymbol{P}$ is defined such that as time goes to infinity, our
+$\boldsymbol{P}$ is defined such that as time goes to infinity, the
 states $\tilde{p}$ and $\dot{\tilde{e}}$ tend to their reference
 values $\tilde{p}_c$ and $\dot{\tilde{e}}_c$. This happens when
 $\dot{\boldsymbol{x}} = 0$, as the system reaches a stable equilibrium
@@ -104,19 +112,19 @@ around the reference values:
                        &= (\boldsymbol{A}-\boldsymbol{BK})\boldsymbol{x}
                          + \boldsymbol{BPr} = 0
 \end{align*}
-When $\boldsymbol{\dot{x}} = 0$, our $\boldsymbol{x}$ has reached its
-final value and we define $\boldsymbol{x} = \boldsymbol{x_\infty}$:
+When $\boldsymbol{\dot{x}} = 0$, $\boldsymbol{x}$ has reached its
+final value, so $\boldsymbol{x} = \boldsymbol{x_\infty}$:
 
 \begin{align*}
   (\boldsymbol{BK} - \boldsymbol{A})\boldsymbol{x_\infty} = \boldsymbol{BPr} \\
   \Leftrightarrow \boldsymbol{x_\infty} = (\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr} \\
   \Rightarrow \boldsymbol{y_\infty} = \boldsymbol{Cx_\infty} = \boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr}
 \end{align*}
-We see that our output $\boldsymbol{y_\infty}$ is equal to our reference $\boldsymbol{r}$ when:
+Therefore, the output $\boldsymbol{y_\infty}$ is equal to our reference $\boldsymbol{r}$ when:
 \begin{equation}
   \boldsymbol{P} = [\boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{B}]^{-1}
 \end{equation}
-Therefore, we now have
+This achieves the desired result, that $\boldsymbol{y}$  goes to $\boldsymbol{r}$  as time goes to infinity:
 \begin{align*}
   \lim_{t\to\infty}\boldsymbol{y}(t) = \boldsymbol{y_\infty} =
   \begin{bmatrix}
@@ -130,7 +138,6 @@ Therefore, we now have
   \end{bmatrix}
   = \boldsymbol{r},
 \end{align*}
-which is what we wanted.
 \subsection{Problem 3}
 With integral effect, the new state space matrices become:
 \begin{equation}
@@ -180,9 +187,11 @@ $\dot{\tilde{e}} = 0$.
 
 With integral effect, this deviation in elevation rate is
 asymptotically removed. This means that with a zero Y output from our
-joystick, we see a corresponding zero elevation rate, and the
-elevation angle stays asymptotically constant also for angles not
+joystick, there is a corresponding near zero elevation rate, and the
+elevation angle also stays asymptotically constant for angles not
 close to its linearization point.
+
+Below, \cref{fig:Input_noIntegralEffect} and \cref{fig:LQR_noEstimator} show the input and output of an automatic run of the LQR controller without integral effect, while \cref{fig:Input_IntegralEffect} and \cref{fig:LQRIntegralEffect_noEstimator} show the input and output of an automatic run of the LQR controller with integral effect. One noticable difference in the input is the need for a small burst in y at the beginning of the run to increase the helicopter to 0 degrees in elevation. This is because this controller does a better job regulating elevation rate, and with an input of 0, it would fly very close to the table at the start. Aside from this the 2 input routines are identical.
 
 \begin{figure}[hbp]
 \caption{LQR Controller with no Integral Effect}

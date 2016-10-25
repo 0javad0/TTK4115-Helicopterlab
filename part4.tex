@@ -77,7 +77,7 @@ This gives the following $\bm{A}$, $\bm{B}$ and $\bm{C}$ matrices
 Where $K_1$, $K_2$ and $K_3$ are given by \cref{eq:linearized EoM}.
 %
 \subsection{Problem 2}
-The observer matrix can be used. For a 6 state system, it is define by:
+The observer matrix can be used. For a 6 state system, it is defined by:
 \begin{equation}
   \bm{\mathcal{O}} =
   \begin{bmatrix}
@@ -101,10 +101,10 @@ function. The resulting 18x6 matrix has rank 6, thereby full rank.
 %   0 & 0 & 0 & 0 & 0 & 1
 % \end{bmatrix}
 % \end{align*}
-It has full rank, and the system is therefore fully observable.
+Since it has full rank, the system is fully observable.
 
 The observer gain matrix $\bm{L}$ is to be set in such a way that the
-poles of the observer is faster than the system, in order to drive the
+poles of the observer are faster than the system, in order to drive the
 error to zero.
 \begin{figure}[H]
   \caption{ illustrating how to place poles during state, or estimated
@@ -115,20 +115,19 @@ error to zero.
     \includegraphics[width=0.5\textwidth]{images/pole_placement}
   \end{center}
 \end{figure}
-\todo[inline]{Finn navnene på theta og sigma i forhold til regtek}The
-poles of the observer must be placed as in
-\cref{fig:pole_placement}. The real value of our poles must be larger
+\todo[inline]{Finn navnene på theta og sigma i forhold til regtek} It is recommended that the
+poles of the observer be placed as in
+\cref{fig:pole_placement}. The real value of the observer poles must be larger
 than $\sigma$, which for the observer is the value of the largest real
 value of the controlled systems poles. This way, all of the linear
 observers poles are such that the observer is faster than the controlled system. $\theta$ is the
-biggest angle of our observer poles. If this is too large, we will get
-too much of an underdamped system and too much of an
-overshoot. However, if the radius is too large, undesired high
+largest angle of the observer poles. If this is too large, the system will be underdamped and cause
+overshoots in the estimate. However, if the radius is too large, undesired high
 frequency noise from the measurements becomes amplified to unwanted
-levels. If the poles are too close, the observer will become increasingly unstable the closer the poles are.
+levels. Furthermore, the observer will become increasingly unstable the closer the poles are.
 
-We chose $\theta = 15$, and $r$ as 50 times the maximum length of the
-controlled systems poles.
+$\theta = 15$, and $r$ as 50 times the maximum length of the
+controlled systems poles worked well for this system.
 
 The observer itself has the state space formulation:
 
@@ -142,12 +141,11 @@ The observer itself has the state space formulation:
                &= \bm{A}(\bm{x} - \hat{\bm{x}}) - \bm{L}(\bm{C}\bm{x}- \bm{C}\hat{\bm{x}}) \\
                &= \bm{Ae} - \bm{LCe} \\
 \end{align*}
-Meaning our error has the state space formulation:
+Meaning the error has the state space formulation:
 \begin{equation}
   \dot{\bm{e}} = (\bm{A} - \bm{LC})\bm{e}
 \end{equation}
-As previously stated, we need this error to converge to zero by
-placing the poles of this state space formulation such that they are
+As previously stated, for this error to converge to zero the poles of this state space formulation should be placed such that they are
 faster than the poles of the system itself. The poles of this state
 space system can be placed arbitrarily because $\{\bm{A},\bm{C}\}$ is
 observable:
@@ -162,8 +160,8 @@ zero. The matlab function $place$ places the poles as desired for us:
 $\bm{L} = place(\bm{A}^T,\bm{C}^T,\bm{\lambda})^T$, where
 $\bm{\lambda}$ is the vector of the observer poles in this instance.
 
-See \cref{fig:LQR_Estimator}. Here, we put our poles on the real line. They were -20, -40, -60, -80, -100, and -120. This type of observer has minimal overshoot, and the poles are spread far apart. The maximum radius is also rather large. Therefore, the response is fast, with minimal overshoot, and stable. Placing the poles on the real line like this was slightly better than placing them evenly on a circle with radius $r = 60$, and an angle $\theta = 22.5$, because this pole setup made the observer too oscillatory.
-
+In \cref{fig:LQR_Estimator} the poles are palced on the real line at -20, -40, -60, -80, -100, and -120. This type of observer has minimal overshoot, as there are no complex parts, and the poles are spread far apart to avoid unstable behavior from the observer. Furthermore, the maximum radius is also rather large leading to a fast response. Placing the poles on the real line like this was slightly better than placing them evenly on a circle with radius $r = 60$, and an angle $\theta = 22.5$, because with this pole setup the observer was too oscillatory.
+\todo[inline]{This r and theta are different than the one mentions previously (about 2 paragraphs back}
 \begin{figure}[p]
 \caption{LQR Controller Estimating $p, e$ and $\lambda$}
 	\begin{center}
@@ -182,9 +180,10 @@ See \cref{fig:LQR_Estimator}. Here, we put our poles on the real line. They were
 
 \subsection{Problem 3}
 When only $\tilde{e}$ and $\tilde{\lambda}$ are measured, the output
-matrix $\bm{C}$ becomes:
+matrix becomes:
 %
 \begin{equation*}
+  \bm{C} =
   \begin{bmatrix}
     0 & 0 & 1 & 0 & 0 & 0 \\
     0 & 0 & 0 & 0 & 1 & 0
@@ -195,9 +194,10 @@ The observer matrix, found through $obsv(\bm{A},\bm{C})$ is a 12x6
 matrix with rank 6. Therefore, it is observable.
 
 However, when only $\tilde{p}$ and $\tilde{e}$ are measured, the
-output matrix $\bm{C}$ becomes:
+output matrix becomes:
 %
 \begin{equation*}
+  \bm{C} =
   \begin{bmatrix}
     1 & 0 & 0 & 0 & 0 & 0 \\
     0 & 0 & 1 & 0 & 0 & 0
