@@ -120,12 +120,12 @@ poles of the observer must be placed as in
 \cref{fig:pole_placement}. The real value of our poles must be larger
 than $\sigma$, which for the observer is the value of the largest real
 value of the controlled systems poles. This way, all of the linear
-observers poles are faster than the controlled system. $\theta$ is the
+observers poles are such that the observer is faster than the controlled system. $\theta$ is the
 biggest angle of our observer poles. If this is too large, we will get
 too much of an underdamped system and too much of an
 overshoot. However, if the radius is too large, undesired high
 frequency noise from the measurements becomes amplified to unwanted
-levels.
+levels. If the poles are too close, the observer will become increasingly unstable the closer the poles are.
 
 We chose $\theta = 15$, and $r$ as 50 times the maximum length of the
 controlled systems poles.
@@ -158,20 +158,25 @@ For this equation, $\lambda$ are the values that solves the equation,
 and also the poles of the observer. By choosing values for $\lambda$,
 an $\bm{L}$ emerges in order to make the determinant equal to
 zero. The matlab function $place$ places the poles as desired for us:
+
 $\bm{L} = place(\bm{A}^T,\bm{C}^T,\bm{\lambda})^T$, where
 $\bm{\lambda}$ is the vector of the observer poles in this instance.
 
-\begin{figure}[H]
+See \cref{fig:LQR_Estimator}. Here, we put our poles on the real line. They were -20, -40, -60, -80, -100, and -120. This type of observer has minimal overshoot, and the poles are spread far apart. The maximum radius is also rather large. Therefore, the response is fast, with minimal overshoot, and stable. Placing the poles on the real line like this was slightly better than placing them evenly on a circle with radius $r = 60$, and an angle $\theta = 22.5$, because this pole setup made the observer too oscillatory.
+
+\begin{figure}[p]
 \caption{LQR Controller Estimating $p, e$ and $\lambda$}
-	\centering
-		\includegraphics[scale =0.4]{images/542_LQR_Estimator.pdf}
+	\begin{center}
+		\includegraphics[angle = 90, width = \textwidth]{images/542_LQR_Estimator.pdf}
+	\end{center}
 	\label{fig:LQR_Estimator}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[p]
 \caption{LQR Controller with Integral Effect Estimating $p, e$ and $\lambda$}
-	\centering
-		\includegraphics[scale =0.4]{images/542_LQRIntegralEffect_Estimator.pdf}
+	\begin{center}
+		\includegraphics[angle = 90, width = \textwidth]{images/542_LQRIntegralEffect_Estimator.pdf}
+	\end{center}
 	\label{fig:LQRIntegralEffect_Estimator}
 \end{figure}
 
