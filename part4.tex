@@ -36,7 +36,7 @@ input - and output vector are given by
     \tilde{V_s} \\
     \tilde{V_d} \\
   \end{bmatrix}
-  \quad \text{and} \quad \bm{y} =
+  \quad \text{andc} \quad \bm{y} =
   \begin{bmatrix}
     \tilde{p} \\
     \tilde{e} \\
@@ -136,10 +136,31 @@ The observer itself has the state space formulation:
   \dot{\hat{\bm{x}}} = \bm{A}\hat{\bm{x}}+\bm{B}\bm{u} + \bm{L}(\bm{y}
   - \bm{C}\hat{\bm{x}})
 \end{equation*}
-
 \begin{align*}
-  \bm{\dot{e}} =
+  \dot{\bm{e}} &= \dot{\bm{\tilde{x}}} - \dot{\hat{\bm{x}}} \\
+               &= \bm{Ax} + \bm{Bu} - \bm{A}\hat{\bm{x}} - \bm{Bu} - \bm{L}(\bm{y}- \bm{C}\hat{\bm{x}}) \\
+               &= \bm{A}(\bm{x} - \hat{\bm{x}}) - \bm{L}(\bm{C}\bm{x}- \bm{C}\hat{\bm{x}}) \\
+               &= \bm{Ae} - \bm{LCe} \\
 \end{align*}
+Meaning our error has the state space formulation:
+\begin{equation}
+  \dot{\bm{e}} = (\bm{A} - \bm{LC})\bm{e}
+\end{equation}
+As previously stated, we need this error to converge to zero by
+placing the poles of this state space formulation such that they are
+faster than the poles of the system itself. The poles of this state
+space system can be placed arbitrarily because $\{\bm{A},\bm{C}\}$ is
+observable:
+\begin{equation*}
+  det(\lambda\bm{I} - \bm{A} +\bm{LC}) = 0
+\end{equation*}
+For this equation, $\lambda$ are the values that solves the equation,
+and also the poles of the observer. By choosing values for $\lambda$,
+an $\bm{L}$ emerges in order to make the determinant equal to
+zero. The matlab function $place$ places the poles as desired for us:
+$\bm{L} = place(\bm{A}^T,\bm{C}^T,\bm{\lambda})^T$, where
+$\bm{\lambda}$ is the vector of the observer poles in this instance.
+
 \subsection{Problem 3}
 When only $\tilde{e}$ and $\tilde{\lambda}$ are measured, the output
 matrix $\bm{C}$ becomes:
