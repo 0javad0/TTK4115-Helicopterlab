@@ -31,7 +31,7 @@ ylabels = {'pitch (deg)', 'pitch_dot (deg/sec)', 'elevation (deg)', 'elevation_d
 h = figure()
 % suptitle(figName)
 for (i = 1:6)
-    subplot(3, 2, i)
+    subplot(3,2, i)
     plot(x_states.time, x_states.signals.values(:,i)*(180/pi), 'b')
     hold on
     plot(xhat_states.time, xhat_states.signals.values(:,i)*(180/pi), 'r')
