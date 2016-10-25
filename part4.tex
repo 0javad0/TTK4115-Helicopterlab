@@ -152,6 +152,20 @@ det(\lambda\bm{I} - \bm{A} +\bm{LC}) = 0
 \end{equation*}
 For this equation, $\lambda$ are the values that solves the equation, and also the poles of the observer. By choosing values for $\lambda$, an $\bm{L}$ emerges in order to make the determinant equal to zero. The matlab function $place$ places the poles as desired for us: $\bm{L} = place(\bm{A}^T,\bm{C}^T,\bm{\lambda})^T$, where $\bm{\lambda}$ is the vector of the observer poles in this instance.
 
+\begin{figure}[H]
+\caption{LQR Controller Estimating $p, e$ and $\lambda$}
+	\centering
+		\includegraphics[scale =0.4]{images/542_LQR_Estimator.pdf}
+	\label{fig:LQR_Estimator}
+\end{figure}
+
+\begin{figure}[H]
+\caption{LQR Controller with Integral Effect Estimating $p, e$ and $\lambda$}
+	\centering
+		\includegraphics[scale =0.4]{images/542_LQRIntegralEffect_Estimator.pdf}
+	\label{fig:LQRIntegralEffect_Estimator}
+\end{figure}
+
 \subsection{Problem 3}
 When only $\tilde{e}$ and $\tilde{\lambda}$ are measured, the output
 matrix $\bm{C}$ becomes:

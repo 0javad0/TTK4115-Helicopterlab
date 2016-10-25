@@ -183,6 +183,34 @@ asymptotically removed. This means that with a zero Y output from our
 joystick, we see a corresponding zero elevation rate, and the
 elevation angle stays asymptotically constant also for angles not
 close to its linearization point.
+
+\begin{figure}[hbp]
+\caption{LQR Controller with no Integral Effect}
+	\centering
+		\includegraphics[scale =0.4]{images/532_LQR_NoEstimator.pdf}
+	\label{fig:LQR_noEstimator}
+\end{figure}
+
+\begin{figure}
+\caption{LQR Controller with Integral Effect}
+	\centering
+		\includegraphics[scale =0.4]{images/533_LQRIntegralEffect_NoEstimator.pdf}
+	\label{fig:LQRIntegralEffect_noEstimator}
+\end{figure}
+
+\begin{figure}
+\caption{Input for no Integral Effect}
+	\centering
+		\includegraphics[scale =0.6]{images/input_noIntegralEffect.pdf}
+	\label{fig:Input_noIntegralEffect}
+\end{figure}
+
+\begin{figure}
+\caption{Input with Integral Effect}
+	\centering
+		\includegraphics[scale =0.6]{images/input_IntegralEffect.pdf}
+	\label{fig:Input_IntegralEffect}
+\end{figure}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "report_main"
