@@ -49,8 +49,8 @@ K_rp = -2;
 % %Problem 5.3.3
 A = [0 1 0 0 0; 0 0 0 0 0 ; 0 0 0 0 0 ; 1 0 0 0 0; 0 0 1 0 0];
 B=[0 0; 0 K_1; K_2 0; 0 0; 0 0];
-Q=diag([3 0.3 5 1 2]);
-R=[.1 0; 0 .1];
+Q=diag([30 0.01 50 1 10]);
+R=[0.1 0; 0 0.1];
 K=lqr(A,B,Q,R);
 %K = zeros(2,5);
 C=[1 0 0 0 0; 0 0 1 0 0];
@@ -79,6 +79,13 @@ for i = 1:3
     observer_poles(i+3) = complex(-width, -height);
 end
 
+observer_poles(1) = complex(-3, 0);
+observer_poles(2) = complex(-50,0);
+observer_poles(3) = complex(-30,-4);
+observer_poles(4) = complex(-30,4);
+observer_poles(5) = complex(-20,4);
+observer_poles(6) = complex(-20,-4);
+
 % observer_poles = zeros(1, 6);
 % for i = 1:3
 %     height = 0;%.54*i-0.20;
@@ -95,12 +102,12 @@ end
 % observer_poles(6) = complex(-2.25, -0.75);
 
 L = place(A_e', C_e', observer_poles)';
-L = [100 -100; 100 -150; 10 -0.5; 20 -5; -1 15; -20 100]
+% L = [100 -100; 100 -150; 10 -0.5; 20 -5; -1 15; -20 100]
 
 figure()
 plot(real(observer_poles), imag(observer_poles), '*')
-xlim([real(min(observer_poles))-1 1])
-ylim([min(imag(observer_poles))-2 max(imag(observer_poles))+2])
+% xlim([real(min(observer_poles))-1 1])
+% ylim([min(imag(observer_poles))-2 max(imag(observer_poles))+2])
 xL = xlim;
 yL = ylim;
 line([0 0], yL);

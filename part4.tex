@@ -207,6 +207,12 @@ output matrix $\bm{C}$ becomes:
 The observer matrix, found through $obsv(\bm{A},\bm{C})$ is a 12x6
 matrix with rank 4. Therefore, it is not observable.
 
+Quicknotes: tried one pole close to the system poles, and the rest out but close to the real line.
+Noticed an underdamped behaviour of the elevation rate, estimate was slightly higher than the true state.
+Tried complex conjugated poles slightly further out of the real line, got a much better response.
+
+More notes: Larger observer poles also means larger $\bm{u}$ values
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "report_main"
