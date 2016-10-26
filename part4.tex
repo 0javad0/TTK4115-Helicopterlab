@@ -162,21 +162,34 @@ $\bm{\lambda}$ is the vector of the observer poles in this instance.
 
 In \cref{fig:LQR_Estimator} the poles are palced on the real line at -20, -40, -60, -80, -100, and -120. This type of observer has minimal overshoot, as there are no complex parts, and the poles are spread far apart to avoid unstable behavior from the observer. Furthermore, the maximum radius is also rather large leading to a fast response. Placing the poles on the real line like this was slightly better than placing them evenly on a circle with radius $r = 60$, and an angle $\theta = 22.5$, because with this pole setup the observer was too oscillatory.
 \todo[inline]{This r and theta are different than the one mentions previously (about 2 paragraphs back}
-\begin{figure}[p]
-\caption{LQR Controller Estimating $p, e$ and $\lambda$}
-	\begin{center}
-		\includegraphics[angle = 90, width = \textwidth]{images/542_LQR_Estimator.pdf}
-	\end{center}
-	\label{fig:LQR_Estimator}
+
+\newgeometry{left=0.5cm,right=0.5cm,top=1cm,bottom=2cm}
+\begin{figure}
+  \caption{LQR Controller Estimating $p, e$ and $\lambda$}
+  \makebox[\textwidth][c]{\includegraphics[width = \textwidth]{images/542_LQR_Estimator.pdf}}
+  \label{fig:LQR_Estimator}
 \end{figure}
 
 \begin{figure}[p]
-\caption{LQR Controller with Integral Effect Estimating $p, e$ and $\lambda$}
-	\begin{center}
-		\includegraphics[angle = 90, width = \textwidth]{images/542_LQRIntegralEffect_Estimator.pdf}
-	\end{center}
-	\label{fig:LQRIntegralEffect_Estimator}
+  \caption{LQR Controller with Integral Effect Estimating $p, e$ and $\lambda$}
+  \makebox[\textwidth][c]{\includegraphics[width = \textwidth]{images/542_LQRIntegralEffect_Estimator.pdf}}
+  \label{fig:LQRIntegralEffect_Estimator}
 \end{figure}
+\restoregeometry
+
+\newgeometry{left=0.5cm,right=0.5cm,top=1cm,bottom=2cm}
+\begin{figure}
+  \caption{LQR Controller Estimating $p, e$ and $\lambda$}
+  \makebox[\textwidth][c]{\includegraphics[angle=90, height = \textheight]{images/542_LQR_Estimator.pdf}}
+  \label{fig:LQR_Estimator}
+\end{figure}
+
+\begin{figure}[p]
+  \caption{LQR Controller with Integral Effect Estimating $p, e$ and $\lambda$}
+  \makebox[\textwidth][c]{\includegraphics[angle = 90, height = \textheight]{images/542_LQRIntegralEffect_Estimator.pdf}}
+  \label{fig:LQRIntegralEffect_Estimator}
+\end{figure}
+\restoregeometry
 
 \subsection{Problem 3}
 When only $\tilde{e}$ and $\tilde{\lambda}$ are measured, the output

@@ -119,7 +119,8 @@ function is as follows:
 
 \begin{equation}
 \label{eq:Transfer function between travel and desired travel}
-\frac{\dot{\tilde{\lambda}}(s)}{\dot{\tilde{\lambda}}_c(s)} = \frac{K_3K_{rp}}{s + K_3K_{rp}}
+\frac{\dot{\tilde{\lambda}}(s)}{\dot{\tilde{\lambda}}_c(s)} =
+\frac{K_3K_{rp}}{s + K_3K_{rp}}
 \end{equation}
 This controller was quite quick and stable after correctly tuning
 $K_{rp}$. The value that was deemed best was $K_{rp}$ = -40. Higher
@@ -130,13 +131,11 @@ to add a gain to the x value of the joystick to limit the input range
 of the controller.
 
 \begin{figure}
-\caption{Simulink implementation of PD controller}
-	\centering
-		\includegraphics{images/pd_pitch_control.pdf}
-	\label{fig:Pitch controller}
+  \caption{Simulink implementation of PD controller}
+  \centering
+  \includegraphics{images/pd_pitch_control.pdf}
+  \label{fig:Pitch controller}
 \end{figure}
-
-% width=\textwidth, [viewport=20mm 20mm 20mm 20mm]
 
 %%% Local Variables:
 %%% mode: latex
