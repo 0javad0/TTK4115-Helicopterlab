@@ -6,15 +6,21 @@
 \section{Part 2 -- Monovariable control}
 %
 \subsection{Problem 1}
-The following controller form is given in the assignment\cite[p.15]{assignment}:
+The following controller form is given in the assignment\cite[p.15]{assignment} and shown in \cref{fig:Pitch controller}:
 %
 \begin{equation}
   \label{eq:pd_controller}
   \tilde{V_d} = K_{pp}(\tilde{p_c} - \tilde{p}) - K_{pd} \dot{\tilde{p}}
 \end {equation}
 %
-Substituting in the equation for pitch
-angle (\cref{eq:pitch EoM}) gives the following.
+\begin{figure}[hbp]
+\caption{Simulink implementation of PD controller}
+	\centering
+		\includegraphics{images/pd_pitch_control.pdf}
+	\label{fig:Pitch controller}
+\end{figure}
+Substitute in the equation for pitch
+angle (\cref{eq:pitch EoM}):
 %
 \begin{equation}
   \label{eq:pitch_with_pd}
@@ -44,7 +50,7 @@ Which gives the transfer function
 %
 The linearized pitch dynamics can be regarded as a second-order linear
 system, which means that by putting \cref{eq:trans_func} in the form
-shown in \cref{eq:sol_system}, $K_{pp}$ and $K_{pd}$ can be determine
+shown in \cref{eq:sol_system}, $K_{pp}$ and $K_{pd}$ can be determined
 from $\omega$ and $\zeta$.
 %
 \begin{equation}
@@ -128,13 +134,13 @@ oscillations, while lower values, or less negative values, of $K_{rp}$
 led to a slower response to the joysticks input.  It was necessary
 to add a gain to the x value of the joystick to limit the input range
 of the controller.
-
 \begin{figure}
-\caption{Simulink implementation of PD controller}
+\caption{Simulink implementation of Travel P Controller}
 	\centering
-		\includegraphics{images/pd_pitch_control.pdf}
-	\label{fig:Pitch controller}
+		\includegraphics{images/TravelPController.png}
+	\label{fig:Travel P Controller}
 \end{figure}
+
 
 % width=\textwidth, [viewport=20mm 20mm 20mm 20mm]
 
