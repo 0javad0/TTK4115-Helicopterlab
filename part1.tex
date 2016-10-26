@@ -26,9 +26,10 @@ The helicopter model shown in \cref{fig:helicopter_model_forces} and
 \end{figure}
 %
 Only forces perpendicular to the moment arm, which is
-perpendicular to the axis of rotation in question, produce a moment/torque. The equation of motion for the pitch is found by
-momentum analysis around the pitch axis in the clockwise direction as shown in
-\cref{fig:helicopter_model_forces}. It becomes:
+perpendicular to the axis of rotation in question, produce a
+moment/torque. The equation of motion for the pitch is found by
+momentum analysis around the pitch axis in the clockwise direction as
+shown in \cref{fig:helicopter_model_forces}. It becomes:
 %
 \begin{align*}
   J_p\ddot{p} &= l_p(F_{g,b} - F_b - F_{g,f} + F_f) \\
@@ -37,7 +38,8 @@ momentum analysis around the pitch axis in the clockwise direction as shown in
 \end{align*}
 %
 Where the lengths, including $l_p$, are shown in
-\cref{fig:helicopter_model_masses}. Since $V_d = V_f-V_b$, this can be written as:
+\cref{fig:helicopter_model_masses}. Since $V_d = V_f-V_b$, this can be
+written as:
 %
 \begin{equation}
   \label{eq:pitch EoM}
@@ -86,8 +88,8 @@ respectively.
               &= arm_cm_cg - arm_h(m_pg + m_pg) + l_hK_fcos(p)(V_f + V_b))
 \end{align*}
 %
-By substituting in $V_s = V_f + V_b$ and the two moment arms the equation becomes:
-%
+By substituting in $V_s = V_f + V_b$ and the two moment arms the
+equation becomes: %
 \begin{align*}
   J_e\ddot{e} = l_ccos(e)m_cg - l_hcos(e)2m_pg + l_hK_fcos(p)V_s)
 \end{align*}
@@ -97,7 +99,7 @@ The equation of motion for the elevation angle then has the final form:
   J_e\ddot{e} = g(l_cm_c - 2l_hm_p)cos(e) + l_hK_fV_scos(p)
 \end{equation}
 %
-Therefore 
+Therefore
 \begin{equation*}
 L_2 = g(l_cm_c-2l_hm_p) = -0.6592 \text{ } [\frac{m^2kg}{s^2}]
 \end{equation*}
@@ -108,7 +110,8 @@ L_3 = l_{h}K_{f} = 0.0879 \text{ } [\frac{m^2kg}{Vs^2}]
 
 Finally, the equation of motion for the travel angle is found by
 momentum analysis around the travel axis in the  clockwise direction, as
-shown in \cref{fig:helicopter_model_forces}. As \cref{fig:pitch_model} shows, the only forces with a moment arm
+shown in \cref{fig:helicopter_model_forces}. As \cref{fig:pitch_model}
+shows, the only forces with a moment arm
 perpendicular to the travel axis are the components of the motor
 forces in the horizontal direction, $F_{f,h} = F_fsin(p)$ and $F_{b,h}
 = F_bsin(p)$. \Cref{fig:elevation_model} shows the moment arm as $arm_h = l_hcos(e)$:

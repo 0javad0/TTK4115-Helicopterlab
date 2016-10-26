@@ -26,7 +26,8 @@ $\boldsymbol{B}$ are as follows:
 \end{equation}
 
 \subsection{Problem 2}
-The rank of the controllability matrix, $\boldsymbol{\mathcal{C}}$, determines whether the system is controllable.
+The rank of the controllability matrix, $\boldsymbol{\mathcal{C}}$,
+determines whether the system is controllable.
 
 
 \begin{equation}
@@ -126,11 +127,14 @@ final value, so $\boldsymbol{x} = \boldsymbol{x_\infty}$:
   \Leftrightarrow \boldsymbol{x_\infty} = (\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr} \\
   \Rightarrow \boldsymbol{y_\infty} = \boldsymbol{Cx_\infty} = \boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{BPr}
 \end{align*}
-Therefore, the output $\boldsymbol{y_\infty}$ is equal to our reference $\boldsymbol{r}$ when:
+Therefore, the output $\boldsymbol{y_\infty}$ is equal to our
+reference $\boldsymbol{r}$ when:
 \begin{equation}
-  \boldsymbol{P} = [\boldsymbol{C}(\boldsymbol{BK} - \boldsymbol{A})^{-1}\boldsymbol{B}]^{-1}
+  \boldsymbol{P} = [\boldsymbol{C}(\boldsymbol{BK} -
+  \boldsymbol{A})^{-1}\boldsymbol{B}]^{-1}
 \end{equation}
-This achieves the desired result, that $\boldsymbol{y}$  goes to $\boldsymbol{r}$  as time goes to infinity:
+This achieves the desired result, that $\boldsymbol{y}$  goes to
+$\boldsymbol{r}$  as time goes to infinity:
 \begin{align*}
   \lim_{t\to\infty}\boldsymbol{y}(t) = \boldsymbol{y_\infty} =
   \begin{bmatrix}
@@ -177,7 +181,8 @@ With integral effect, the new state space matrices become:
   \end{bmatrix}
 \end{equation}
 
-The matrices used to calculate the controllers gains, Q and R, also needed to be updated:
+The matrices used to calculate the controllers gains, Q and R, also
+needed to be updated:
 
 \begin{equation}
   Q =
