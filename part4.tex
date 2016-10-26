@@ -213,6 +213,9 @@ Tried complex conjugated poles slightly further out of the real line, got a much
 
 More notes: Larger observer poles also means larger $\bm{u}$ values
 
+This observer is particularly challenging to implement due to the fact that pitch is measured based on the travel rate, which is based on travel. This means the estimator has to filter out two layers of measurement noise. This means that choosing the observer poles becomes difficult because as the radius of the poles increases it begins to amplify this noise.
+
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "report_main"
