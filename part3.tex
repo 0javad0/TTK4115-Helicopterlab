@@ -191,21 +191,7 @@ joystick, there is a corresponding near zero elevation rate, and the
 elevation angle also stays asymptotically constant for angles not
 close to its linearization point.
 
-Below, \cref{fig:Input_noIntegralEffect} and \cref{fig:LQR_noEstimator} show the input and output of an automatic run of the LQR controller without integral effect, while \cref{fig:Input_IntegralEffect} and \cref{fig:LQRIntegralEffect_noEstimator} show the input and output of an automatic run of the LQR controller with integral effect. One noticable difference in the input is the need for a small burst in y at the beginning of the run to increase the helicopter to 0 degrees in elevation. This is because this controller does a better job regulating elevation rate, and with an input of 0, it would fly very close to the table at the start. Aside from this the 2 input routines are identical.
-
-\begin{figure}[hbp]
-\caption{LQR Controller with no Integral Effect}
-	\centering
-		\includegraphics[scale =0.4]{images/532_LQR_NoEstimator.pdf}
-	\label{fig:LQR_noEstimator}
-\end{figure}
-
-\begin{figure}
-\caption{LQR Controller with Integral Effect}
-	\centering
-		\includegraphics[scale =0.4]{images/533_LQRIntegralEffect_NoEstimator.pdf}
-	\label{fig:LQRIntegralEffect_noEstimator}
-\end{figure}
+Below, \cref{fig:Input_noIntegralEffect} and \cref{fig:LQR_noEstimator} show the input and output of an automatic run of the LQR controller without integral effect, while \cref{fig:Input_IntegralEffect} and \cref{fig:LQRIntegralEffect_noEstimator} show the input and output of an automatic run of the LQR controller with integral effect. One noticable difference in the input is the need for a small burst in y at the beginning of the run to increase the helicopter to 0 degrees in elevation. This is because this controller does a better job regulating elevation rate, and with an input of 0, it would fly very close to the table at the start. Aside from this the 2 input routines are identical. The output is very similar in pitch and travel. However, in elevation, at the end of the routine without integral effect, the elevation angle returns to zero. While with integral effect, although there is a bounce back, the controller does not bring the helicopter's elevation angle back to zero, but instead brings the elevation rate to zero.
 
 \begin{figure}
 \caption{Input for no Integral Effect}
@@ -215,11 +201,26 @@ Below, \cref{fig:Input_noIntegralEffect} and \cref{fig:LQR_noEstimator} show the
 \end{figure}
 
 \begin{figure}
+\caption{LQR Controller with no Integral Effect}
+	\centering
+		\includegraphics[scale =0.4]{images/532_LQR_NoEstimator.pdf}
+	\label{fig:LQR_noEstimator}
+\end{figure}
+
+\begin{figure}
 \caption{Input with Integral Effect}
 	\centering
 		\includegraphics[scale =0.6]{images/input_IntegralEffect.pdf}
 	\label{fig:Input_IntegralEffect}
 \end{figure}
+
+\begin{figure}[hpb]
+\caption{LQR Controller with Integral Effect}
+	\centering
+		\includegraphics[scale =0.4]{images/533_LQRIntegralEffect_NoEstimator.pdf}
+	\label{fig:LQRIntegralEffect_noEstimator}
+\end{figure}
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "report_main"
