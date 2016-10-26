@@ -196,8 +196,8 @@ TSWLatexianTemp*
 *.temp
 
 # Build files
-MATLAB/heli_q8.rt-win64
-MATLAB/heli_q8_quarc_win64/
+*.rt-win64
+*_quarc_win64/
 MATLAB/slprj/
 #Emacs backup
 *.*~
