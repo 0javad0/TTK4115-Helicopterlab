@@ -116,13 +116,13 @@ error to zero.
 \begin{figure}[H]
   \caption{ illustrating how to place poles during state, or estimated
     state feedback, on a semi-circle with the same radius, within the
-    region shown.}
+    region shown. \cite{chen14}}
   \label{fig:pole_placement}
   \begin{center}
     \includegraphics[width=0.5\textwidth]{images/pole_placement}
   \end{center}
 \end{figure}
-\todo[inline]{Finn navnene på theta og sigma i forhold til regtek} It is recommended that the
+It is recommended that the
 poles of the observer be placed as in
 \cref{fig:pole_placement}. The real value of the observer poles must be larger
 than $\sigma$, which for the observer is the value of the largest real
@@ -132,9 +132,6 @@ largest angle of the observer poles. If this is too large, the system will be un
 overshoots in the estimate. However, if the radius is too large, undesired high
 frequency noise from the measurements becomes amplified to unwanted
 levels. Furthermore, the observer will become increasingly unstable the closer the poles are.
-
-$\theta = 15$, and $r$ as 50 times the maximum length of the
-controlled systems poles worked well for this system.
 
 The observer itself has the state space formulation:
 
@@ -168,7 +165,6 @@ $\bm{L} = place(\bm{A}^T,\bm{C}^T,\bm{\lambda})^T$, where
 $\bm{\lambda}$ is the vector of the observer poles in this instance.
 
 In \cref{fig:LQR_Estimator} the poles are palced on the real line at -20, -40, -60, -80, -100, and -120. This type of observer has minimal overshoot, as there are no complex parts, and the poles are spread far apart to avoid unstable behavior from the observer. Furthermore, the maximum radius is also rather large leading to a fast response. Placing the poles on the real line like this was slightly better than placing them evenly on a circle with radius $r = 60$, and an angle $\theta = 22.5$, because with this pole setup the observer was too oscillatory.
-\todo[inline]{This r and theta are different than the one mentions previously (about 2 paragraphs back}
 
 \newgeometry{left=0.5cm,right=0.5cm,top=1cm,bottom=2cm}
 \begin{figure}
@@ -228,13 +224,15 @@ output matrix becomes:
 The observer matrix, found through $obsv(\bm{A},\bm{C})$ is a 12x6
 matrix with rank 4. Therefore, it is not observable.
 
-Quicknotes: tried one pole close to the system poles, and the rest out but close to the real line.
-Noticed an underdamped behaviour of the elevation rate, estimate was slightly higher than the true state.
-Tried complex conjugated poles slightly further out of the real line, got a much better response.
+This observer is particularly challenging to implement due to the way that pitch is estimated.  The pitch estimate is based on the elevation and travel error of the observer, and the impact of the input $\bm{u}$ on our model and the derivative of the estimated travel rate.  This last term of the pitch estimate becomes a double derivative of measured travel, which significantly amplifies measurement noise.
 
-More notes: Larger observer poles also means larger $\bm{u}$ values
+The observer desirably filters out noise if the poles' negative real value $\sigma$ in \cref{fig:pole_placement} is not too large. However, if this value is too low, the observer becomes too slow and cannot accurately estimate the states. When the double derivation introduces large amounts of noise, the challenge emerges as a balancing act of making $\sigma$ large enough so that the observer accurately estimates the states, while not making it so large that the noise becomes undesirably amplified.
 
-This observer is particularly challenging to implement due to the fact that pitch is measured based on the travel rate, which is based on travel. This means the estimator has to filter out two layers of measurement noise. This means that choosing the observer poles becomes difficult because as the radius of the poles increases it begins to amplify this noise.
+One must also wisely set $\theta$ as seen in \cref{fig:pole_placement} to a high enough value to make the system the right amount of underdamped with not too much oscillation and good settling time, and spread the poles such that they are not close enough to introduce unstable behavior \cite[p.290]{chen14}. It can also help to reduce the poles of the controlled system itself to help make the observer slower in order to counteract the amplified noise while allowing the observer to keep up with the controlled system. This is also limited however, as the controller eventually becomes too slow for efficient control.
+
+In the tuning process, Q and R began at their values from Part 5.4.2, but eventually were reduced to make the controller slower. Many different pole placements for the observer were tried, including on a circle as suggested by Chen, on the real line as was done in 5.4.2 with varying uniform lengths between each pole, on a vertical line with the spread between them decided by $\theta$, and several others \cite[p.290]{chen14}.
+
+What ended up allowing for reasonable control of the system was spreading the poles as much as possible in between the real values of -50 and -3, while keeping $\theta$ as low as possible.  We ended up using poles $\bm{\lambda} = [-3, -20-4i, -20+4i, -30-4i, -30+4i, -50]^T$, $Q = diag([30, 0.1, 50, 1, 15])$, and $R = diag([0.1, 0.1])$.
 
 \newgeometry{left=0.5cm, right=0.5cm, top=1cm, bottom=2cm}
 \begin{figure}[h]
@@ -242,7 +240,6 @@ This observer is particularly challenging to implement due to the fact that pitc
 \makebox[\textwidth][c]{\includegraphics[angle=90, height=\textheight]{images/543_Estimator}}
 \label{fig:Estimator4_3}
 \end{figure}
-
 
 %%% Local Variables:
 %%% mode: latex

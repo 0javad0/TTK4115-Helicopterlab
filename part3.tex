@@ -43,6 +43,13 @@ The rank of the controllability matrix, $\boldsymbol{\mathcal{C}}$, determines w
 which has full rank: $rank(\bm{\mathcal{C}}) = 3$, and is thus
 controllable.
 
+\begin{figure}[h]
+\caption{Simulink implementation of LQR controller}
+	\centering
+		\includegraphics{images/LQRController.png}
+	\label{fig:LQR controller}
+\end{figure}
+
 The system can be controlled by adding an LQR controller with reference
 feed-forward, $u = \bm{Pr}-\bm{Kx}$. K is derived from the Matlab lqr
 function, which requires the A and B matrices, in addition to
@@ -96,7 +103,6 @@ A higher value for $q_{1,1}$ yields a more oscillatory pitch behavior,
 while a lower value yields a slower response. As for $q_{2,2}$ a
 higher value slowed the pitch response. With $q_{3,3} > 100$ the
 system becomes difficult to control.
-\todo[inline]{Explain why the system becomes difficult to control}
 
 $\boldsymbol{P}$ is defined such that as time goes to infinity, the
 states $\tilde{p}$ and $\dot{\tilde{e}}$ tend to their reference
@@ -139,11 +145,13 @@ This achieves the desired result, that $\boldsymbol{y}$  goes to $\boldsymbol{r}
   = \boldsymbol{r},
 \end{align*}
 
+
+
 \begin{figure}
-\caption{Simulink implementation of LQR controller}
+\caption{Simulink implementation of LQR controller with Integral Effect}
 	\centering
-		\includegraphics{images/LQR_BlockDiagram.png}
-	\label{fig:LQR controller}
+		\includegraphics[scale=0.6]{images/LQRIntegralEffect.png}
+	\label{fig:LQR controller with Integral Effect}
 \end{figure}
 
 \subsection{Problem 3}
